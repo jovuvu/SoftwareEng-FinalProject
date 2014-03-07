@@ -34,3 +34,4 @@ gem 'jquery-rails'
 
 # To use debugger
 gem 'haml'
+gem "haml-rails", :group => :development
