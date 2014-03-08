@@ -14,11 +14,26 @@
 ActiveRecord::Schema.define(version: 20140307211142) do
 
   create_table "posts", force: true do |t|
+  	t.integer "posted_by"
+  	t.datetime "date_posted"
+  	t.text "content"
+  	t.integer "parent_id"
+  	t.text "children"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
+  	t.string "name"
+  	t.string "email"
+  	t.datetime "dob"
+  	t.string "gender"
+  	t.string "hashed_password"
+  	t.text "interests"
+  	t.string "quotes"
+  	t.string "tv_shows_and_movies"
+  	t.string "music"
+  	t.text "friends"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
