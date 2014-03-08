@@ -14,32 +14,11 @@
 ActiveRecord::Schema.define(version: 20140307211142) do
 
   create_table "posts", force: true do |t|
-<<<<<<< HEAD
-=======
-    t.integer  "postedBy"
-    t.datetime "datePosted"
-    t.text     "content"
-    t.integer  "parentId"
-    t.text     "children"
->>>>>>> 07c0293eaa6a9f8d3bd03b0a9decfce6ca59a0d9
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-<<<<<<< HEAD
-=======
-    t.string   "name"
-    t.string   "email"
-    t.datetime "dob"
-    t.string   "gender"
-    t.string   "hashed_password"
-    t.text     "interests"
-    t.string   "quotes"
-    t.string   "tvshowsAndmovies"
-    t.string   "music"
-    t.text     "friends"
->>>>>>> 07c0293eaa6a9f8d3bd03b0a9decfce6ca59a0d9
     t.datetime "created_at"
     t.datetime "updated_at"
   end
