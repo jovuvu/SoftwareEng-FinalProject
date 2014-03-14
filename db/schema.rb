@@ -11,29 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307211142) do
+ActiveRecord::Schema.define(version: 20140307232123) do
 
   create_table "posts", force: true do |t|
-  	t.integer "posted_by"
-  	t.datetime "date_posted"
-  	t.text "content"
-  	t.integer "parent_id"
-  	t.text "children"
+    t.string   "posted_by"
+    t.datetime "post_date"
+    t.text     "post_text"
+    t.string   "parent"
+    t.text     "children"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-  	t.string "name"
-  	t.string "email"
-  	t.datetime "dob"
-  	t.string "gender"
-  	t.string "hashed_password"
-  	t.text "interests"
-  	t.string "quotes"
-  	t.string "tv_shows_and_movies"
-  	t.string "music"
-  	t.text "friends"
+    t.string   "name"
+    t.string   "email"
+    t.datetime "dob"
+    t.string   "gender"
+    t.string   "password_hash"
+    t.text     "interests"
+    t.text     "quotes"
+    t.text     "tv_and_movies"
+    t.text     "music"
+    t.text     "friends"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
