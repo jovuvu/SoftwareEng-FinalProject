@@ -1,28 +1,23 @@
-== README
+README
+======
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Software Enginnering Final Project
 
-Things you may want to cover:
+### Team Members
+* Jonathan Vu
+* Dillon Drenzek
+* Diego Escalante
 
-* Ruby version
+### Project Description
+This is a Final Project for CSCI 3308 in CU Boulder
 
-* System dependencies
+It is meant to be a simple clone of FaceBook using Ruby on Rails, with the similar functunality that it had back in 2004.
 
-* Configuration
+### Models
+...
 
-* Database creation
+### Views
+...
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### Controllers
+...
