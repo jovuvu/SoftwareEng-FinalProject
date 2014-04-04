@@ -10,6 +10,14 @@ group :development, :test do
   gem 'rake', '10.1.1'
   gem 'sqlite3'
   gem 'debugger'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'rspec-rails'
+end
+group :test do
+  gem 'cucumber-rails'
+  gem 'cucumber-rails-training-wheels'
 end
 group :production do
   gem 'pg'
@@ -22,6 +30,8 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem 'uglifier'
+  gem 'bcrypt-ruby', '~> 3.0.0'
 end
 
 gem 'jquery-rails'
