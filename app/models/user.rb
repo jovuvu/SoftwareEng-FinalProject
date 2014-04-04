@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-  serialize :preferences
+  serialize :friends
 end
