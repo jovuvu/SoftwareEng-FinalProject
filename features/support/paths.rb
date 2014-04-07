@@ -13,8 +13,8 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the Login Page/
-      '/'
+    when /^the user profile page/
+      '/users/:id(.:format)'
       
     # when /^the Create New Movie page/
     #   '/movies/new'
