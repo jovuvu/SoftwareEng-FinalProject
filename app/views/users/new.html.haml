@@ -4,9 +4,46 @@
 
 = form_tag users_path do
 
-  = label :user, :title, 'Title'
-  = text_field :user, 'title'
+  = label :user, :name_first, 'First Name'
+  = text_field :user, :name_first
+  %br  
+
+  = label :user, :name_last, 'Last Name'
+  = text_field :user, :name_last
+  %br 
+
+  = label :user, :dob, 'Date of Birth'
+  = date_select :user, :dob
+  %br
+
+  = label :user, :gender, 'Gender'
+  = select :user, :gender, ['Male','Female','Not Sure']
+  %br
+  %br
+
+  = label :user, :email, 'Email'
+  = text_field :user, :email
+  %br
+
+  = label :user, :password_hash, 'Password'
+  = password_field :user, :password_hash
+  %br
+  %br
 
   = submit_tag 'Save Changes'
 
 = link_to 'Back', users_path
+
+/ 	  t.string   "name_first"
+/     t.string   "name_last"
+/     t.string   "email"
+/     t.datetime "dob"
+/     t.string   "gender"
+/     t.string   "password_hash"
+/     t.text     "interests"
+/     t.text     "quotes"
+/     t.text     "tv_and_movies"
+/     t.text     "music"
+/     t.text     "friends"
+/     t.datetime "created_at"
+/     t.datetime "updated_at"

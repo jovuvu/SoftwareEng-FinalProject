@@ -24,7 +24,8 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.create!(params[:user])
+    @user = User.new(user_params)
+    @user.save
     redirect_to users_path
   end
 
@@ -51,6 +52,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params[:user]
+      # params[:user]
+      params.require(:user).permit(:name_first,:name_last, :email, :dob, :gender, :password_hash)
     end
 end
