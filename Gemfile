@@ -30,7 +30,6 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'uglifier'
   gem 'bcrypt-ruby', '~> 3.0.0'
 end
 
