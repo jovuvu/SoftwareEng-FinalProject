@@ -1,7 +1,35 @@
 %h1 Editing user
 
-= render 'form'
+/ = render 'form'
+= form_tag users_path do
 
-= link_to 'Show', @user
-\|
+  = label :user, :name_first, 'First Name'
+  = text_field :user, :name_first
+  %br  
+
+  = label :user, :name_last, 'Last Name'
+  = text_field :user, :name_last
+  %br 
+
+  = label :user, :dob, 'Date of Birth'
+  = date_select :user, :dob
+  %br
+
+  = label :user, :gender, 'Gender'
+  = select :user, :gender, ['Male','Female','Not Sure']
+  %br
+  %br
+
+  = label :user, :email, 'Email'
+  = text_field :user, :email
+  %br
+
+  = label :user, :password_hash, 'Password'
+  = password_field :user, :password_hash
+  %br
+  %br
+
+  = submit_tag 'Save Changes'
+
 = link_to 'Back', users_path
+
