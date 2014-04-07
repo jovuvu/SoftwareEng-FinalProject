@@ -1,5 +1,12 @@
 %h1 New user
 
-= render 'form'
+/ = render 'form'
+
+= form_tag users_path do
+
+  = label :user, :title, 'Title'
+  = text_field :user, 'title'
+
+  = submit_tag 'Save Changes'
 
 = link_to 'Back', users_path

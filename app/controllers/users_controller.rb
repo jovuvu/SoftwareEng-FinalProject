@@ -8,26 +8,24 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    id = params[:id] # retrieve user ID from URI route
+    @user = User.find(id)
   end
 
   # GET /users/new
   def new
-    @user = User.new
+    # @user = User.new
   end
 
   # GET /users/1/edit
   def edit
+    @user = User.find params[:id]
   end
 
   # POST /users
   def create
-    @user = User.new(user_params)
-
-    if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
-    else
-      render action: 'new'
-    end
+    @user = User.create!(params[:user])
+    redirect_to users_path
   end
 
   # PATCH/PUT /users/1

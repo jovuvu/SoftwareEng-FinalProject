@@ -1,6 +1,37 @@
 %p#notice= notice
+%h2 #{@user.name_first} #{@user.name_last}'s Profile
+
+%h3 Email:
+%p #{@user.email}
+
+%h3 Date of Birth:
+%p #{@user.dob}
+%h3 Gender:
+%p #{@user.gender}
+%h3 Interests:
+%p #{@user.interests}
+%h3 Quotes:
+%p #{@user.quotes}
+%h3 TV and Movies:
+%p #{@user.tv_and_movies}
+%h3 Music:
+%p #{@user.music}
 
 
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+/ = link_to 'Edit', edit_user_path(@user)
+/ \|
+/ = link_to 'Back', users_path
+
+/ 	  t.string   "name_first"
+/     t.string   "name_last"
+/     t.string   "email"
+/     t.datetime "dob"
+/     t.string   "gender"
+/     t.string   "password_hash"
+/     t.text     "interests"
+/     t.text     "quotes"
+/     t.text     "tv_and_movies"
+/     t.text     "music"
+/     t.text     "friends"
+/     t.datetime "created_at"
+/     t.datetime "updated_at"
