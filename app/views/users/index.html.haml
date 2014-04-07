@@ -1,16 +1,33 @@
 %h1 Listing users
 
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @users.each do |user|
+%table#users
+  %thead
     %tr
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
-      %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th User First Name 
+      %th User Last Name
+      %th User Email
+      %th User Date of Birth
+      %th Users Profile
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name_first
+        %td= user.name_last
+        %td= user.email
+        %td= user.dob
+        %td= link_to "Visit #{user.name_first} #{user.name_last}'s Profile", user_path(user)
+
+/ %table
+/   %tr
+/     %th
+/     %th
+/     %th
+
+/   - @users.each do |user|
+/     %tr
+/       %td= link_to 'Show', user
+/       %td= link_to 'Edit', edit_user_path(user)
+/       %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
