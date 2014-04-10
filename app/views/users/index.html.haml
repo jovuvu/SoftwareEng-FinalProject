@@ -8,6 +8,7 @@
       %th User Email
       %th User Date of Birth
       %th Users Profile
+      %th Delete?
   %tbody
     - @users.each do |user|
       %tr
@@ -16,6 +17,7 @@
         %td= user.email
         %td= user.dob
         %td= link_to "Visit #{user.name_first} #{user.name_last}'s Profile", user_path(user)
+        %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 / %table
 /   %tr
