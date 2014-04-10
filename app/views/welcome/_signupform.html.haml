@@ -1,19 +1,50 @@
-%form
-	%fieldset
-		%ol
-			%li
-				%label{:for => "firstname"} First Name:
-				%input{:type => "text", :name => "firstname", :class => "text"}
-			%li
-				%label{:for => "lastname"} Last Name:
-				%input{:type => "text", :name => "lastname", :class => "text"}
-			%li
-				%label{:for => "email"} Email:
-				%input{:type => "text", :name => "email", :class => "text"}
-			%li
-				%label{:for => "login"} Login:
-				%input{:type => "text", :name => "login", :class => "text"}
-			%li
-				%label{:for => "password"} Password:
-				%input{:type => "password", :name => "password", :class => "text"}
-		%input{:type => "submit", :value => "Login", :class => "button"}
+/ %form
+/ 	%fieldset
+/ 		%ol
+/ 			%li
+/ 				%label{:for => "firstname"} First Name:
+/ 				%input{:type => "text", :name => "firstname", :class => "text"}
+/ 			%li
+/ 				%label{:for => "lastname"} Last Name:
+/ 				%input{:type => "text", :name => "lastname", :class => "text"}
+/ 			%li
+/ 				%label{:for => "email"} Email:
+/ 				%input{:type => "text", :name => "email", :class => "text"}
+/ 			%li
+/ 				%label{:for => "login"} Login:
+/ 				%input{:type => "text", :name => "login", :class => "text"}
+/ 			%li
+/ 				%label{:for => "password"} Password:
+/ 				%input{:type => "password", :name => "password", :class => "text"}
+/ 		%input{:type => "submit", :value => "Sign Up", :class => "button"}
+
+= form_tag users_path do
+	= label :user, :name_first, 'First Name'
+	= text_field :user, :name_first
+	%br  
+
+	= label :user, :name_last, 'Last Name'
+	= text_field :user, :name_last
+	%br 
+
+	= label :user, :dob, 'Date of Birth'
+	= date_select :user, :dob
+	%br
+
+	= label :user, :gender, 'Gender'
+	= select :user, :gender, ['Male','Female','Not Sure']
+	%br
+	%br
+
+	= label :user, :email, 'Email'
+	= text_field :user, :email
+	%br
+
+	= label :user, :password_hash, 'Password'
+	= password_field :user, :password_hash
+	%br
+	%br
+
+	= submit_tag 'Sign Up'
+
+= link_to 'Back', users_path
