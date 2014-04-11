@@ -1,7 +1,7 @@
 Feature: Edit profile preferences and be redirected to the profile page.
 
 	As a user
-	So that I can have my match with my current interests and information
+	So that I can have my profile match with my current interests and information
 	I want to be able to edit my profile preferences
 
 	Scenario Outline:

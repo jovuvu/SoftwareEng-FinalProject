@@ -5,7 +5,7 @@
 %p #{@user.email}
 
 %h3 Date of Birth:
-%p #{@user.dob}
+%p #{@user.dob.strftime('%m-%b-%Y')}
 %h3 Gender:
 %p #{@user.gender}
 %h3 Interests:
