@@ -1,10 +1,13 @@
-%form
-	%fieldset
-		%ol
-			%li
-				%label{:for => "Login"} Login:
-				%input{:type => "text", :name => "Login", :class => "text"}
-			%li
-				%label{:for => "password"} Password:
-				%input{:type => "password", :name => "password", :class => "text"}
-		%input{:type => "submit", :value => "Login", :class => "button"}
+
+%fieldset
+	= form_tag users_path, :method => :post do
+		= label :user, :email, 'Email'
+		= text_field :user, :email
+		%br
+
+		= label :user, :password_hash, 'Password'
+		= password_field :user, :password_hash
+		%br
+		%br
+
+		= submit_tag 'Sign Up'

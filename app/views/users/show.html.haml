@@ -2,6 +2,8 @@
 %p#notice= notice
 %h2 #{@user.name_first} #{@user.name_last}'s Profile
 = link_to "#{@user.name_first} #{@user.name_last}'s Posts", user_posts_path(@user)
+= link_to 'Edit Profile', edit_user_path(@user)
+= link_to 'Back to User List', users_path
 
 %h3 Email:
 %p #{@user.email}
@@ -20,9 +22,9 @@
 %p #{@user.music}
 
 
-= link_to 'Edit', edit_user_path(@user)
+
 / \|
-= link_to 'Back', users_path
+
 
 / 	  t.string   "name_first"
 /     t.string   "name_last"

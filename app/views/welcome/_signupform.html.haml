@@ -1,30 +1,31 @@
-= form_tag users_path, :method => :post do
-	= label :user, :name_first, 'First Name'
-	= text_field :user, :name_first
-	%br  
+%fieldset
+	= form_tag users_path, :method => :post do
+		= label :user, :name_first, 'First Name'
+		= text_field :user, :name_first
+		%br  
 
-	= label :user, :name_last, 'Last Name'
-	= text_field :user, :name_last
-	%br 
+		= label :user, :name_last, 'Last Name'
+		= text_field :user, :name_last
+		%br 
 
-	= label :user, :dob, 'Date of Birth'
-	= date_select :user, :dob
-	%br
+		= label :user, :dob, 'Birthdate'
+		= date_select :user, :dob, :order => [:month, :day, :year], :start_year => Date.current.year, :end_year => 1900, :use_two_digit_numbers => true
+		%br
 
-	= label :user, :gender, 'Gender'
-	= select :user, :gender, ['Male','Female','Not Sure']
-	%br
-	%br
+		= label :user, :gender, 'Gender'
+		= select :user, :gender, ['Male','Female','Not Sure']
+		%br
+		%br
 
-	= label :user, :email, 'Email'
-	= text_field :user, :email
-	%br
+		= label :user, :email, 'Email'
+		= text_field :user, :email
+		%br
 
-	= label :user, :password_hash, 'Password'
-	= password_field :user, :password_hash
-	%br
-	%br
+		= label :user, :password_hash, 'Password'
+		= password_field :user, :password_hash
+		%br
+		%br
 
-	= submit_tag 'Sign Up'
+		= submit_tag 'Sign Up'
 
 = link_to 'Back', users_path
