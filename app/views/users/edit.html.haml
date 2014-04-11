@@ -1,7 +1,26 @@
-%h1 Editing user
+%h1 Profile Preferences
 
-= render 'form'
+= form_tag user_path(@user), :method => :put do
+	%div
+		= label :user, :email
+		= email_field :user, :email
+	%div
+		= label :user, :dob, 'Birthdate'
+		= date_select :user, :dob, :order => [:month, :day, :year], :start_year => Date.current.year, :end_year => 1900
+	%div
+		= label :user, :gender
+		= select :user, :gender, ['Male', 'Female']
+	%div
+		= label :user, :interests
+		= text_area :user, :interests
+	%div
+		= label :user, :quotes
+		= text_area :user, :quotes
+	%div
+		= label :user, :tv_and_movies, 'TV and Movies'
+		= text_area :user, :tv_and_movies
+	%div
+		= label :user, :music
+		= text_area :user, :music
 
-= link_to 'Show', @user
-\|
-= link_to 'Back', users_path
+	= submit_tag 'Save Changes'
