@@ -15,6 +15,8 @@ module NavigationHelpers
 
     when /^the user profile page/
       '/users/:id(.:format)'
+    when /^the users listing page/
+      users_path
       
     # when /^the Create New Movie page/
     #   '/movies/new'
