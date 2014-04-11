@@ -7,7 +7,9 @@
     = csrf_meta_tags
 
   %body
-    %h1.title Software Engineering Final Project
+    %header
+      %h1.title Software Engineering Final Project
+      = link_to 'List Users', users_path 
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]

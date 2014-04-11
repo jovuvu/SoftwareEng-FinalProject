@@ -14,7 +14,9 @@ module NavigationHelpers
     case page_name
 
     when /^the user profile page/
-      '/users/:id(.:format)'
+      user_path(@user)
+    when /^the users listing page/
+      users_path
       
     # when /^the Create New Movie page/
     #   '/movies/new'

@@ -1,5 +1,7 @@
+/ User's Profile
 %p#notice= notice
 %h2 #{@user.name_first} #{@user.name_last}'s Profile
+= link_to "#{@user.name_first} #{@user.name_last}'s Posts", user_posts_path(@user)
 
 %h3 Email:
 %p #{@user.email}
