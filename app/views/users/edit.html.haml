@@ -2,11 +2,8 @@
 
 = form_tag user_path(@user), :method => :put do
 	%div
-		= label :user, :email
-		= email_field :user, :email
-	%div
 		= label :user, :dob, 'Birthdate'
-		= date_select :user, :dob, :order => [:month, :day, :year], :start_year => Date.current.year, :end_year => 1900
+		= date_select :user, :dob, :order => [:month, :day, :year], :start_year => Date.current.year, :end_year => 1900, :use_two_digit_numbers => true
 	%div
 		= label :user, :gender
 		= select :user, :gender, ['Male', 'Female']
