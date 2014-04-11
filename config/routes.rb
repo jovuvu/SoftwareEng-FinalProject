@@ -1,19 +1,19 @@
 SoftwareEngFinalProject::Application.routes.draw do
-  resources :posts
-
-  resources :users
+  resources :users do
+    resources :posts
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
-  # post '/' => 'users#show'
-  get '/users/:id(.:format)' => 'users#show' # user profile
-  get '/users/:id(.:format)/newsfeed' => 'users#newsfeed' # user news feed
+  # root 'welcome#index'
+  # # post '/' => 'users#show'
+  # get '/users/:id(.:format)' => 'users#show' # user profile
+  # get '/users/:id(.:format)/newsfeed' => 'users#newsfeed' # user news feed
 
-  # edit_user GET    /users/:id/edit(.:format) users#edit
-  get '/users/:id/edit(.:format)' => 'users#edit' # edit preferences
+  # # edit_user GET    /users/:id/edit(.:format) users#edit
+  # get '/users/:id/edit(.:format)' => 'users#edit' # edit preferences
 
   # post GET    /posts/:id(.:format)      posts#show
 
