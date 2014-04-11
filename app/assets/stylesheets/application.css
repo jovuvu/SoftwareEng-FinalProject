@@ -11,3 +11,28 @@
  *= require_self
  *= require_tree .
  */
+/**,
+*:before,
+*:after{
+	margin: 0 auto;
+	padding: 0;
+}*/
+
+body{
+	margin: 0 auto;
+	padding: 0;
+}
+
+ header{
+ 	background: #232425;
+ 	height: 100px;
+ 	width: 100%;
+ 	margin: 0;
+ 	display: table;
+ 	
+ }
+ 	header h1.title{
+ 		color: #fcfcf8;
+ 		vertical-align: middle;
+ 		display: table-cell;
+ 	}
