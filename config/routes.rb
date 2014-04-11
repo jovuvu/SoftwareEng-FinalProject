@@ -8,6 +8,15 @@ SoftwareEngFinalProject::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+  # post '/' => 'users#show'
+  get '/users/:id(.:format)' => 'users#show' # user profile
+  get '/users/:id(.:format)/newsfeed' => 'users#newsfeed' # user news feed
+
+  # edit_user GET    /users/:id/edit(.:format) users#edit
+  get '/users/:id/edit(.:format)' => 'users#edit' # edit preferences
+
+  # post GET    /posts/:id(.:format)      posts#show
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

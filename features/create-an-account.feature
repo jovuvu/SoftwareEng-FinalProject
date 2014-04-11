@@ -12,8 +12,7 @@ Feature: Create a new account and be redirected to newsfeed
 		And I fill in "Email" with <Email>
 		And I fill in "Password" with <Password>
 		Then I press "Sign Up"
-		
-		And I should be on the users listing page
+		And I should be on the user profile page
 
 		Examples:
 		| First_Name 	|	Last_Name	|	Email			|	Password	|

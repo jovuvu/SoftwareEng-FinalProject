@@ -7,7 +7,7 @@ gem 'rails', '4.0.2'
 
 # for Heroku deployment - as described in Ap. A of ELLS book
 group :development, :test do
-  gem 'rake', '10.1.1'
+  gem 'rake', '10.2.2'
   gem 'sqlite3'
   gem 'debugger'
   gem 'database_cleaner'
