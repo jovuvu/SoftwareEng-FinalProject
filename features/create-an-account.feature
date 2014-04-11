@@ -21,6 +21,7 @@ Feature: Create a new account and be redirected to newsfeed
 	Scenario Outline: Redirect user to profile
 		Given I am on the home page
 		And I fill in "First Name" with <First_Name>
+		And I fill in "Last Name" with <Last_Name>
 
 		Examples:
 		| First_Name 	|	Last_Name	|	Email			|	Password	|
