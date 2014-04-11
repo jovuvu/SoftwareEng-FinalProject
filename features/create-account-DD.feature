@@ -17,12 +17,3 @@ Feature: Create a new account and be redirected to newsfeed
 		| First_Name 	|	Last_Name	|	Email			|	Password	|
 		| Billy			|	Bob			|	blah@gmail.com	|	1234		|
 		| Chris			|	Christy		|	CChris@gmail.com|	5678		|
-
-	Scenario Outline: Redirect user to profile
-		Given I am on the home page
-		And I fill in "First Name" with <First_Name>
-
-		Examples:
-		| First_Name 	|	Last_Name	|	Email			|	Password	|
-		| Billy			|	Bob			|	blah@gmail.com	|	1234		|
-		| Chris			|	Christy		|	CChris@gmail.com|	5678		|
