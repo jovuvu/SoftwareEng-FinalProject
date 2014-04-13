@@ -66,4 +66,14 @@ describe User do
  			end
  		end
   	end
+
+# UNIQUENESS VALIDATION TESTS
+	describe "when email address is already taken" do
+		before do
+			user_with_same_email = @user.dup
+			user_with_same_email.save
+		end
+
+		it { should_not be_valid}
+	end
 end
