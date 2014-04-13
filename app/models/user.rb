@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
-  serialize :friends
-  has_many :posts
+	# validates :name_first, presence: true
+
+  	serialize :friends
+  	has_many :posts
 end
