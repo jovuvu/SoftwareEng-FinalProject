@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-    @user.create!
+    @user.save
     redirect_to user_path(@user)
   end
 
