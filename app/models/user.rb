@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	before_save { self.email = email.downcase }
 	validates :name_first, presence: true, length: {maximum: 50}
 	validates :name_last, presence: true, length: {maximum: 50}
 
