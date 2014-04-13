@@ -31,4 +31,9 @@ describe User do
   	it { should_not be_valid }
   end
 
+  describe "when name_first is too long" do
+  	before {@user.name_first = "a" * 51}
+  	it { should_not be_valid }
+  end
+
 end
