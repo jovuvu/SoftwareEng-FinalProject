@@ -14,8 +14,21 @@ describe User do
   it { should be_valid }
 
   describe "when name_first is not present" do
-  	# test checks to see that an invalid first name is caught
+  	# test checks to see that a blank first name is caught
   	before { @user.name_first = " "}
   	it { should_not be_valid }
   end
+
+  describe "when name_last is not present" do
+  	# test checks to see that a blank last name is caught
+  	before { @user.name_last = " "}
+  	it { should_not be_valid }
+  end 
+
+  describe "when email is not present" do
+  	# test checks to see that a blank email is caught
+  	before { @user.email = " "}
+  	it { should_not be_valid }
+  end
+
 end
