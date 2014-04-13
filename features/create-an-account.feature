@@ -9,8 +9,6 @@ Feature: Create a new account and be redirected to newsfeed
 		Given I am on the home page
 		And I fill in "First Name" with <First_Name>
 		And I fill in "Last Name" with <Last_Name>
-		And I fill in "Email" with <Email>
-		And I fill in "Password" with <Password>
 		Then I press "Sign Up"
 		And I should be on the user profile page
 

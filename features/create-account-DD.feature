@@ -5,15 +5,11 @@ Feature: Create a new account and be redirected to newsfeed
 	So that I can start using the app
 	I want to be able to create a new account
 	
-	Scenario Outline: Create a new user
-		Given I have entered <First_Name>
-		And I have entered <Last_Name>
-		And I have entered <Email>
-		And I have entered <Password>
-		When I press <Create_Account>
-		Then the new user <Email> should be added to Users
-	
-		Examples:
-		| First_Name 	|	Last_Name	|	Email			|	Password	|
-		| Billy			|	Bob			|	blah@gmail.com	|	1234		|
-		| Chris			|	Christy		|	CChris@gmail.com|	5678		|
+	Scenario: Create a new user
+		Given I am on the home page
+		And I fill in "First Name" with "New"
+		And I fill in "Last Name" with "McNewerson"
+		And I fill in "Email" with "test@test.com"
+		And I fill in "Password" with "1234"
+		And I press "Sign Up"
+		Then I should be redirected to my profile page

@@ -1,12 +1,12 @@
 
 %fieldset
 	= form_tag users_path, :method => :post do
-		= label :user, :email, 'Email'
-		= text_field :user, :email
+		= label :user, :login_email, 'Login Email'
+		= text_field :user, :login_email
 		%br
 
-		= label :user, :password_hash, 'Password'
-		= password_field :user, :password_hash
+		= label :user, :login_password, 'Login Password'
+		= password_field :user, :login_password
 		%br
 		%br
 
