@@ -6,12 +6,13 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.datetime :dob
       t.string :gender
-      t.string 'password_hash'
-      t.text 'interests'
-      t.text 'quotes'
-      t.text 'tv_and_movies'
-      t.text 'music'
-      t.text 'friends'
+      t.string :password
+      t.string :password_confirmation
+      t.text :interests
+      t.text :quotes
+      t.text :tv_and_movies
+      t.text :music
+      t.text :friends
       t.timestamps
     end
   end

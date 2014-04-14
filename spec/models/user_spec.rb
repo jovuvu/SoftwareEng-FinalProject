@@ -3,14 +3,18 @@ require 'spec_helper'
 describe User do
   
   before do
-  	@user = User.new(name_first: "Rspec", name_last: "Testuser", email: "testuser@rspec.com")
+  	@user = User.new(name_first: "Rspec", name_last: "Testuser", email: "testuser@rspec.com", 
+  		password: "password", password_confirmation: "password")
   end
+  
   subject { @user }
 
   it { should respond_to(:name_first) }
   it { should respond_to(:name_last) }
   it { should respond_to(:email) }
   it { should respond_to(:password_digest) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
 
   it { should be_valid }
 
@@ -30,6 +34,16 @@ describe User do
   describe "when email is not present" do
   	# test checks to see that a blank email is caught
   	before { @user.email = " "}
+  	it { should_not be_valid }
+  end
+
+  describe "when password is not present" do
+  	# test checks to see that a blank password is caught
+  	before do
+  		@user = User.new(name: "Example User", email: "user@example.com",
+                     password: " ", password_confirmation: " ")
+  	end  
+
   	it { should_not be_valid }
   end
 

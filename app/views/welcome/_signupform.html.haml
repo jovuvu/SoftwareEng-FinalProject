@@ -21,8 +21,12 @@
 		= text_field :user, :email
 		%br
 
-		= label :user, :password_hash, 'Password'
-		= password_field :user, :password_hash
+		= label :user, :password, 'Password'
+		= password_field :user, :password
+		%br
+
+		= label :user, :password_confirmation, 'Confirm Password'
+		= password_field :user, :password_confirmation
 		%br
 		%br
 
