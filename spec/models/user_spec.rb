@@ -6,7 +6,7 @@ describe User do
   	@user = User.new(name_first: "Rspec", name_last: "Testuser", email: "testuser@rspec.com", 
   		password: "password", password_confirmation: "password")
   end
-  
+
   subject { @user }
 
   it { should respond_to(:name_first) }
@@ -40,8 +40,8 @@ describe User do
   describe "when password is not present" do
   	# test checks to see that a blank password is caught
   	before do
-  		@user = User.new(name: "Example User", email: "user@example.com",
-                     password: " ", password_confirmation: " ")
+  		@user = User.new(name_first: "Rspec", name_last: "Testuser", email: "testuser@rspec.com", 
+  		password: " ", password_confirmation: " ")
   	end  
 
   	it { should_not be_valid }
