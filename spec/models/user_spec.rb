@@ -15,6 +15,7 @@ describe User do
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
+  it { should respond_to(:authenticate) }
 
   it { should be_valid }
 
@@ -95,7 +96,35 @@ describe User do
 
 # PASSWORD VALIDATION TESTS
 	describe "when password and password_confirmation don't match" do
+		# makes sure the password and the password_confirmation match
 		before { @user.password_confirmation = "mismatch" }
 		it { should_not be_valid }
+	end
+
+	describe "return value of the authenticate method" do
+		# save user to db to be retrieved with 'find_by'
+		before { @user.save }
+		# find user with find_by
+		# let creates local variables inside tests
+		let(:found_user) { User.find_by(email: @user.email) }
+
+		# @user and :found_user passwords match
+		describe "with valid password" do
+			it { should eq found_user.authenticate(@user.password) }
+		end 
+
+		# @user and :found_user passwords don't match
+		describe "with invalid password" do
+			let(:user_for_invalid_password) { found_user.authenticate("invalid")}
+			
+			it { should_not eq user_for_invalid_password}
+			# specify is synonym for 'it' method
+			specify { expect(user_for_invalid_password).to be_false }
+		end
+	end
+
+	describe "with a password that's too short" do
+		before { @user.password = @user.password_confirmation = "a" * 7}
+		it { should be_invalid }
 	end
 end
