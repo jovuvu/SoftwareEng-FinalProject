@@ -92,4 +92,10 @@ describe User do
 
 		it { should_not be_valid}
 	end
+
+# PASSWORD VALIDATION TESTS
+	describe "when password and password_confirmation don't match" do
+		before { @user.password_confirmation = "mismatch" }
+		it { should_not be_valid }
+	end
 end
