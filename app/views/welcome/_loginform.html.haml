@@ -1,13 +1,11 @@
+= form_tag users_path, :method => :post do
+	= label :user, :login_email, 'Email' , :class => "center font"
+	= text_field :user, :login_email, :class => "center font",  :placeholder => 'Email'
+	%br
 
-%fieldset
-	= form_tag users_path, :method => :post do
-		= label :user, :login_email, 'Login Email'
-		= text_field :user, :login_email
-		%br
+	= label :user, :login_password, 'Password', :class => "center font"
+	= password_field :user, :login_password, :class => "center font",  :placeholder => 'Password'
+	%br
+	%br
 
-		= label :user, :login_password, 'Login Password'
-		= password_field :user, :login_password
-		%br
-		%br
-
-		= submit_tag 'Log In'
+	= submit_tag 'Log In', :class => "center font"

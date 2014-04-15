@@ -40,3 +40,57 @@ body{
  	a{
  		color: #f70;
  	}
+
+fieldset{
+	margin: 0px auto;
+	width: 320px;
+	/*height: 150px;*/
+	display: block;
+	position: relative;
+}
+	fieldset.login{
+	}
+	fieldset.signup{
+
+	}
+
+
+	fieldset>h3{
+		font-family: "Trebuchet MS", Helvetica, sans-serif;
+	}
+	.form-containers{
+		display: inline-block;
+	}
+	form{
+		margin: 0 auto;
+		/*height: 100px;*/
+	}
+
+	.center{
+		margin: 0 auto;
+		display: block;
+		text-align: center;
+		/*position: relative;*/
+	}
+	.font{
+		font-family: "Trebuchet MS", Helvetica, sans-serif;
+	}
+
+	input#user_login_email{
+		width: 200px;
+		/*height: 30px;*/
+		text-align: center;
+		font-size: 16px;
+		
+
+	}
+	input#user_login_password{
+		width: 200px;
+		/*height: 30px;*/
+		text-align: center;
+		font-size: 16px;
+	}
+	input{
+		height:30px;
+		font-size: 18px;
+	}

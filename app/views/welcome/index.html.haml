@@ -1,7 +1,8 @@
-%h2 Welcome
+/ %h2 Welcome
+%fieldset{ :class => 'login'}
+	%h3 Log In
+	= render 'loginform'
 
-%h3 Log In
-= render 'loginform'
-
-%h3 Sign Up
-= render 'signupform'
+%fieldset{ :class => 'signup'}
+	%h3 Sign Up
+	= render 'signupform'
