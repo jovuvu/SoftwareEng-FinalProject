@@ -3,6 +3,7 @@ SoftwareEngFinalProject::Application.routes.draw do
   resources :users do
     resources :posts
   end
+  resources :sessions, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -10,6 +11,8 @@ SoftwareEngFinalProject::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   match '/signup', to: 'users#new', via: 'get'
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
   # # post '/' => 'users#show'
   # get '/users/:id(.:format)' => 'users#show' # user profile
   # get '/users/:id(.:format)/newsfeed' => 'users#newsfeed' # user news feed
