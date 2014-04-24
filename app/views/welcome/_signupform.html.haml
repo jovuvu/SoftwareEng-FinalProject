@@ -1,5 +1,5 @@
 = form_tag users_path, :method => :post do
-	%div{ :class => ['form-containers'] }
+	%div{ :class => 'form-containers' }
 		= label :user, :name_first, 'First Name'
 		%br
 		= text_field :user, :name_first, :placeholder => 'First Name', :class => "center font"
@@ -21,7 +21,7 @@
 		= select :user, :gender, ['Male','Female','Not Sure'], :class => "center font"
 		%br
 		%br
-	%div{ :class => ['form-containers'] }
+	%div{ :class => 'form-containers' }
 		= label :user, :email, 'Email'
 		%br
 		= text_field :user, :email

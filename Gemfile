@@ -16,8 +16,9 @@ group :development, :test do
   gem 'rspec-rails'
 end
 group :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
+  gem 'factory_girl_rails', '4.2.1'
 end
 group :production do
   gem 'pg'

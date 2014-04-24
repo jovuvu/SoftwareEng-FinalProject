@@ -1,4 +1,5 @@
 / User's Profile
+%title #{@user.name_first} #{@user.name_last}'s Profile
 %p#notice= notice
 %h2 #{@user.name_first} #{@user.name_last}'s Profile
 = link_to "#{@user.name_first} #{@user.name_last}'s Posts", user_posts_path(@user)
@@ -20,22 +21,3 @@
 %p #{@user.tv_and_movies}
 %h3 Music:
 %p #{@user.music}
-
-
-
-/ \|
-
-
-/ 	  t.string   "name_first"
-/     t.string   "name_last"
-/     t.string   "email"
-/     t.datetime "dob"
-/     t.string   "gender"
-/     t.string   "password_hash"
-/     t.text     "interests"
-/     t.text     "quotes"
-/     t.text     "tv_and_movies"
-/     t.text     "music"
-/     t.text     "friends"
-/     t.datetime "created_at"
-/     t.datetime "updated_at"
