@@ -1,2 +1,17 @@
 %title Sign In
 %h1 Sign In
+
+= form_tag sessions_path, :method => :post do
+	= label :session, :email, 'Email' , :class => "center font"
+	= text_field :session, :email, :class => "center font",  :placeholder => 'Email'
+	%br
+
+	= label :session, :password, 'Password', :class => "center font"
+	= password_field :session, :password, :class => "center font",  :placeholder => 'Password'
+	%br
+	%br
+
+	= submit_tag 'Sign In', :class => "center font"
+
+	%p New User? 
+	=link_to 'Create An Account', signup_path
