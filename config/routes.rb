@@ -9,6 +9,7 @@ SoftwareEngFinalProject::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+  match '/signup', to: 'users#new', via: 'get'
   # # post '/' => 'users#show'
   # get '/users/:id(.:format)' => 'users#show' # user profile
   # get '/users/:id(.:format)/newsfeed' => 'users#newsfeed' # user news feed
