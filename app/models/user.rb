@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
 	# validate password
 	# passwords should be at least 8 characters
-	validates :password, length: {minimum: 8}
+	# validates :password, length: {minimum: 8}
 	has_secure_password
 
   	serialize :friends

@@ -11,9 +11,7 @@
       %h1.title Software Engineering Final Project
       = link_to 'User List', users_path 
     #main
-      - if flash[:notice]
-        #notice.message= flash[:notice]
-      - elsif flash[:warning]
+      - if flash[:warning]
         #warning.message= flash[:warning]
 
       = yield
