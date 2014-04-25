@@ -2,3 +2,58 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+#page
+{
+	display: block;
+	text-align: center;
+	width: 33%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	margin-right: auto;
+	margin-left: auto;
+	border: black;
+	border-style: solid;
+	border-color: gray;
+	box-shadow: 5px 5px 5px #B8B8B8;
+	border-width: 2px;
+	padding: 2%;
+	background-color: #232425;
+	border-radius:25px;
+	color: #E65C00;
+}
+
+#content
+{
+	padding:1%;
+}
+
+#content label
+{
+	font-weight: bold;
+}
+
+#content textarea
+{
+	width: 95%;
+	height: 60px;
+	resize: none;
+	background-color: lightgray;
+}
+
+p
+{
+	color: white;
+}
+
+#minor
+{
+	color: white;
+	font-weight: normal;
+	font-size: 100%;
+}
+
+span
+{
+	font-weight: bold;
+	font-size: 110%;
+}
