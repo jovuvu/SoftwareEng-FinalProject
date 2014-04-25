@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	# duplicate email prevention step
 	before_save { self.email = email.downcase }
+	before_create :create_remember_token
 
 	# validating name
 	validates :name_first, presence: true, length: {maximum: 50}
@@ -20,4 +21,17 @@ class User < ActiveRecord::Base
 
   	# each user has many posts, creates each users' personalized news feed
   	has_many :posts
+
+  	def User.new_remember_token
+  		SecureRandom.urlsafe_base64
+  	end
+
+  	def User.digest(token)
+  		Digest::SHA1.hexdigest(token.to_s)
+  	end
+
+  	private
+  		def create_remember_token
+  			self.remember_token = User.digest(User.new_remember_token)
+  		end
 end

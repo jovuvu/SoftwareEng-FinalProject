@@ -44,13 +44,13 @@ describe "User pages" do
 			end
 			
 			it "should create a user" do
-		        # expect ( click_button "Sign Up" ).to change(User, :count).by(1)
+		        #expect ( click_button "Sign Up" ).to change(User, :count).by(1)
 		    end
 
 		end
 
 		describe "with invalid information" do
-			# expect ( click_button "Sign Up" ).not_to change(User, :count)
+			#expect ( click_button "Sign Up" ).not_to change(User, :count)
 		end
  
 	end
