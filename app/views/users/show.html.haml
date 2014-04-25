@@ -1,24 +1,30 @@
 / User's Profile
-%title #{@user.name_first} #{@user.name_last}'s Profile
-%p#notice= notice
-%h2 #{@user.name_first} #{@user.name_last}'s Profile
-= link_to "#{@user.name_first} #{@user.name_last}'s Posts", user_posts_path(@user)
-= link_to 'Edit Profile', edit_user_path(@user)
-= link_to 'Back to User List', users_path
+%div#page
+	%title #{@user.name_first} #{@user.name_last}'s Profile
+	%p#notice= notice
+	%h2 #{@user.name_first} #{@user.name_last}'s Profile
+	= link_to "#{@user.name_first} #{@user.name_last}'s Posts", user_posts_path(@user)
+	= link_to 'Edit Profile', edit_user_path(@user)
+	= link_to 'Back to User List', users_path
 
-%h3 Email:
-%p #{@user.email}
-
-%h3 Date of Birth:
-- if !@user.dob.nil?
-	%p #{@user.dob.to_formatted_s(:long_ordinal)}
-%h3 Gender:
-%p #{@user.gender}
-%h3 Interests:
-%p #{@user.interests}
-%h3 Quotes:
-%p #{@user.quotes}
-%h3 TV and Movies:
-%p #{@user.tv_and_movies}
-%h3 Music:
-%p #{@user.music}
+	%div#content
+		%span Email:
+		%span#minor #{@user.email}
+	%div#content
+		%span Date of Birth:
+		%span#minor #{@user.dob.strftime('%m-%b-%Y')}
+	%div#content
+		%span Gender:
+		%span#minor #{@user.gender}
+	%div#content
+		%span Interests:
+		%p #{@user.interests}
+	%div#content
+		%span Quotes:
+		%p #{@user.quotes}
+	%div#content
+		%span TV and Movies:
+		%p #{@user.tv_and_movies}
+	%div#content
+		%span Music:
+		%p #{@user.music}

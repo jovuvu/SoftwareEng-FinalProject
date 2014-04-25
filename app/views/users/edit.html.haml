@@ -1,23 +1,25 @@
-%h1 Profile Preferences
+%div#page 
+	%h1 Profile Preferences
 
-= form_tag user_path(@user), :method => :put do
-	%div
-		= label :user, :dob, 'Birthdate'
-		= date_select :user, :dob, :order => [:month, :day, :year], :start_year => Date.current.year, :end_year => 1900, :use_two_digit_numbers => true
-	%div
-		= label :user, :gender
-		= select :user, :gender, ['Male', 'Female']
-	%div
-		= label :user, :interests
-		= text_area :user, :interests
-	%div
-		= label :user, :quotes
-		= text_area :user, :quotes
-	%div
-		= label :user, :tv_and_movies, 'TV and Movies'
-		= text_area :user, :tv_and_movies
-	%div
-		= label :user, :music
-		= text_area :user, :music
+	= form_tag user_path(@user), :method => :put do
+		%div#content
+			= label :user, :dob, 'Birthdate:'
+			= date_select :user, :dob, :order => [:month, :day, :year], :start_year => Date.current.year, :end_year => 1900, :use_two_digit_numbers => true
+		%div#content
+			= label :user, :gender, 'Gender:'
+			= select :user, :gender, ['Male', 'Female']
+		%div#content
+			= label :user, :interests, 'Interests:'
+			= text_area :user, :interests
+		%div#content
+			= label :user, :quotes, 'Quotes:'
+			= text_area :user, :quotes
+		%div#content
+			= label :user, :tv_and_movies, 'TV and Movies:'
+			= text_area :user, :tv_and_movies
+		%div#content
+			= label :user, :music, 'Music:'
+			= text_area :user, :music
 
-	= submit_tag 'Save Changes'
+		%br
+		= submit_tag 'Save Changes'

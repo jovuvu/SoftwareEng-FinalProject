@@ -21,9 +21,7 @@
       - elsif !signed_in?
         = link_to 'Sign In', signin_path, :method => :get
     #main
-      - if flash[:notice]
-        #notice.message= flash[:notice]
-      - elsif flash[:warning]
+      - if flash[:warning]
         #warning.message= flash[:warning]
       - elsif flash[:error]
         #error.message= flash[:error]
