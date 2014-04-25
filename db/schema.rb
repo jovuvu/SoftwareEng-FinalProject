@@ -14,6 +14,10 @@
 ActiveRecord::Schema.define(version: 20140413234427) do
 
   create_table "posts", force: true do |t|
+    t.text     "content"
+    t.text     "children"
+    t.string   "parent"
+    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
