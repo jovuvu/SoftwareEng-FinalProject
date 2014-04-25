@@ -56,6 +56,8 @@ describe "User pages" do
         		it { should have_selector('div.alert.alert-success', text: 'Welcome') }
 		    end
 
+		    
+
 		end
 
 		describe "with invalid information" do
