@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Post do
   before do
     @user = FactoryGirl.create(:user)
-    @parent = FactoryGirl.create(:post, content: "PARENT", user_id: @user.id)
+    @parent = FactoryGirl.create(:post, content: "PARENT", user_id: @user.id, parent: "newsfeed/#{@user.id}")
     @children = Array.new
     for i in 0..5 
       @pst = FactoryGirl.create(:post, content: "CHILD", user_id: @user.id, parent: @parent.id)
@@ -15,5 +15,10 @@ describe Post do
   it "should store its children properly" do
     puts "@parent.children: " + @parent.children.inspect  
     expect(@parent.children).to eq @children
+  end
+  
+  it "posts should appear on the newsfeed" do
+    visit "/users/#{@user.id}/posts"
+    expect(page).to have_content("PARENT")
   end
 end
