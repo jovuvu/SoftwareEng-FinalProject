@@ -27,7 +27,14 @@ class UsersController < ApplicationController
     # @user = User.create(user_params)
     
     @user = User.create!(user_params)
-    redirect_to user_path(@user)
+    if @user.save
+      sign_in @user
+      flash[:success] = "Welcome to the App"
+      redirect_to @user
+    else
+      render 'new'
+    end
+
   end
 
   # PATCH/PUT /users/1
