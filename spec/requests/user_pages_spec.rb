@@ -10,7 +10,8 @@ describe "User pages" do
 
 		before { visit "/" }
 
-		it { should have_content('Sign up') }
+		it { should have_content('New User?') }
+		it { should have_link('Create An Account') }
 		it { should have_title('Software Engineering Final Project')}
 
 	end
@@ -20,10 +21,9 @@ describe "User pages" do
 		# use Factory Girl gem to create a user (factory)
 		let(:user) { FactoryGirl.create(:user)}
 
-		before { visit user_path(:user) }
+		before { visit user_path(user) }
 
-		it { should have_content(:user.name_first + :user.name_last) }
-		it { should have_title(:user.name_first + :user.name_last)}
+		it { should have_content(user.name_first + " " + user.name_last) }
 
 
 	end
@@ -43,17 +43,16 @@ describe "User pages" do
 				fill_in "Confirm Password", with: "password1"
 			end
 			
-			it "should create a user" do
-		        #expect ( click_button "Sign Up" ).to change(User, :count).by(1)
-		    end
+			# it "should create a user" do
+		 #        expect ( click_button "Sign Up" ).to change(User.count).by(1)
+		 #    end
 
 		    describe "after saving the user" do
 		    	before{ click_button submit }
-		    	let(:user) {User.find_by(email: 'dr.enzek@gmail.com')}
+		    	let(:user) {User.find_by(email: 'rspec@testperson.com')}
 
-		    	it { should have_link('Sign out') }
-        		it { should have_title(user.name) }
-        		it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+		    	it { should have_link('Sign Out') }
+        		it { should have_selector('div#notice.message', text: "Welcome") }
 		    end
 
 		    

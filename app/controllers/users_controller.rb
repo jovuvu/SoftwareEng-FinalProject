@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @user = User.create!(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the App"
+      flash[:notice] = "Welcome"
       redirect_to @user
     else
       render 'new'

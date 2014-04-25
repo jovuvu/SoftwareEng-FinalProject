@@ -27,5 +27,7 @@
         #warning.message= flash[:warning]
       - elsif flash[:error]
         #error.message= flash[:error]
+      - elsif flash[:success]
+        #error.message= flash[:success]
 
       = yield

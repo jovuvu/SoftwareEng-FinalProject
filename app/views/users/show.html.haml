@@ -10,7 +10,8 @@
 %p #{@user.email}
 
 %h3 Date of Birth:
-%p #{@user.dob.strftime('%m-%b-%Y')}
+- if !@user.dob.nil?
+	%p #{@user.dob.to_formatted_s(:long_ordinal)}
 %h3 Gender:
 %p #{@user.gender}
 %h3 Interests:
