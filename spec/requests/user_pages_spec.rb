@@ -47,6 +47,17 @@ describe "User pages" do
 		        #expect ( click_button "Sign Up" ).to change(User, :count).by(1)
 		    end
 
+		    describe "after saving the user" do
+		    	before{ click_button submit }
+		    	let(:user) {User.find_by(email: 'dr.enzek@gmail.com')}
+
+		    	it { should have_link('Sign out') }
+        		it { should have_title(user.name) }
+        		it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+		    end
+
+		    
+
 		end
 
 		describe "with invalid information" do
@@ -54,5 +65,7 @@ describe "User pages" do
 		end
  
 	end
+
+
 
 end
