@@ -4,7 +4,9 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts
+    query = {}
+    query[:conditions] = ["parent is (?)", "newsfeed/" + params[:user_id]]
+    @posts = Post.find(:all, query)
   end
 
   # GET /posts/1
@@ -24,7 +26,6 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
-
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
     else
