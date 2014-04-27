@@ -11,16 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425184753) do
+ActiveRecord::Schema.define(version: 20140425224806) do
 
   create_table "posts", force: true do |t|
-    t.text     "content"
-    t.text     "children"
-    t.string   "parent"
-    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "relationships", force: true do |t|
+    t.integer  "friend_id"
+    t.boolean  "pending?"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "relationships", ["friend_id"], name: "index_relationships_on_friend_id"
 
   create_table "users", force: true do |t|
     t.string   "name_first"
