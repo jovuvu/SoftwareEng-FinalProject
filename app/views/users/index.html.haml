@@ -13,6 +13,6 @@
         - if (current_user && user.email == current_user.email)
           %td= link_to "My Profile", user_path(user)
         - else
-          %td= link_to "Add Friend"
+          %td= link_to "Add Friend", new_user_relationship_path(user)
 
 %br

@@ -1,3 +1,3 @@
 class Relationship < ActiveRecord::Base
-	has_many :friends
+	belongs_to :users
 end

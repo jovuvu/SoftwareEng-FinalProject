@@ -8,6 +8,8 @@
 	= link_to 'Edit Profile', edit_user_path(@user)
 	%br
 	= link_to 'Find Friend', users_path
+	%br
+	= link_to 'List My Friends', user_relationships_path(@user)
 
 	%div#content
 		%span Email:

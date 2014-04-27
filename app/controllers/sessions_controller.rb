@@ -3,10 +3,10 @@ class SessionsController < ApplicationController
 	def new
 		if !current_user.nil?
 			redirect_to current_user
-		elsif User.count >= 1
-			redirect_to signin_path
-		else
-			redirect_to signup_path
+		# elsif User.count >= 1
+		# 	redirect_to signin_path
+		# else
+		# 	redirect_to signup_path
 		end
 	end
 

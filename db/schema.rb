@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 20140427220808) do
   end
 
   create_table "relationships", force: true do |t|
+    t.integer  "receiving_user_id"
+    t.integer  "requesting_user_id"
+    t.boolean  "confirmed"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
