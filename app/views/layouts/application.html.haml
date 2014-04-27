@@ -20,6 +20,8 @@
 
       - elsif !signed_in?
         = link_to 'Sign In', signin_path, :method => :get
+        %br
+        = link_to 'Sign Up', signup_path, :method => :get
     #main
       - if flash[:warning]
         #warning.message= flash[:warning]

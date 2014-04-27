@@ -1,10 +1,10 @@
 class SessionsController < ApplicationController
 
 	def new
-		if current_user
+		if !current_user.nil?
 			redirect_to current_user
 		else
-			redirect_to root_path
+			redirect_to signup_path
 		end
 	end
 

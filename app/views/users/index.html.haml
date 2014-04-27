@@ -18,10 +18,11 @@
         / %td= user.name_last
         / %td= user.email
         / %td= user.dob
-        - if user.email == current_user.email
+        - if (current_user && user.email == current_user.email)
           %td= link_to "My Profile", user_path(user)
         - else
           %td= link_to "Add Friend"
+          / , :controller => "relationship", :action => "request", :method => :post
 
           / %a{ :class => "friend-button", :href => "#" } Friend
         /= link_to "Add Friend"
