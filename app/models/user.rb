@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 	# validates :password, length: {minimum: 8}
 	has_secure_password
 
-  	serialize :friends
+  	# serialize :friends
 
   	# each user has many posts, creates each users' personalized news feed
   	has_many :posts
