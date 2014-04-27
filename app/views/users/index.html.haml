@@ -3,33 +3,17 @@
 %table#users
   %thead
     %tr
-      %th Name 
-      / %th Last Name
-      / %th User Email
-      / %th User Date of Birth
+      %th Name
       %th Friend
-      / %th User Profile
-      / %th User News Feed
-      / %th Delete?
   %tbody
     - @users.each do |user|
       %tr
         %td= user.name_first + " " + user.name_last
-        / %td= user.name_last
-        / %td= user.email
-        / %td= user.dob
+        
         - if (current_user && user.email == current_user.email)
           %td= link_to "My Profile", user_path(user)
         - else
           %td= link_to "Add Friend"
-          / , :controller => "relationship", :action => "request", :method => :post
-
-          / %a{ :class => "friend-button", :href => "#" } Friend
-        /= link_to "Add Friend"
-        / %td= link_to "Profile", user_path(user)
-        / %td= link_to "News Feed", user_posts_path(user)
-        / %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          / , :controller => "relationships", :action => "request"
 
 %br
-
-/ = link_to 'New User', signup_path
