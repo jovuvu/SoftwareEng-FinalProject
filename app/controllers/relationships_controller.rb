@@ -8,7 +8,9 @@ class RelationshipsController < ApplicationController
   end
 
   def user_index
+    # @outgoing_relationships = Relationship.where(:requesting_user_id => params[:user_id])
     @outgoing_relationships = Relationship.where(:requesting_user_id => current_user.id)
+    # @incoming_relationships = Relationship.where(:receiving_user_id => params[:user_id])
     @incoming_relationships = Relationship.where(:receiving_user_id => current_user.id)
     @confirmed_relationships = Relationship.where(:confirmed => true)
     
