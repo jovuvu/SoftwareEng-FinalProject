@@ -107,3 +107,36 @@ header
 	margin-right: 20px;
 	height: 75%;
 }
+
+.title
+{
+	color: #E65C00;
+}
+
+div.wall
+{
+	width:75%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.author
+{
+	text-align: left;
+	color: #E65C00;
+}
+
+.post
+{
+	padding: 2%;
+	border-radius: 25px;
+	vertical-align: top;
+	background-color: #393A3B;
+	color: white;
+	margin-bottom: 15px;
+}
+
+.timestamp
+{
+	text-align: right;
+}
