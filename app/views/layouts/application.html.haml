@@ -9,19 +9,26 @@
   %body
     %header
       %h1.title Software Engineering Final Project
-      - if signed_in?
-        = link_to 'User List', users_path 
-        %br
-        = link_to "#{current_user.name_first} #{current_user.name_last}", current_user
-        %br
-        = link_to 'Edit Profile', edit_user_path(current_user), :method => :get
-        %br
-        = link_to 'Sign Out', signout_path, :method => :delete
+      %div.headerlinks
+        - if signed_in?
+          %span
+            = link_to 'User List', users_path 
+          %br
+          %span
+            = link_to "#{current_user.name_first} #{current_user.name_last}", current_user
+          %br
+          %span
+            = link_to 'Edit Profile', edit_user_path(current_user), :method => :get
+          %br
+          %span
+            = link_to 'Sign Out', signout_path, :method => :delete
 
-      - elsif !signed_in?
-        = link_to 'Sign In', signin_path, :method => :get
-        %br
-        = link_to 'Sign Up', signup_path, :method => :get
+        - elsif !signed_in?
+          %span
+            = link_to 'Sign In', signin_path, :method => :get
+          %br
+          %span
+            = link_to 'Sign Up', signup_path, :method => :get
     #main
       - if flash[:warning]
         #warning.message= flash[:warning]

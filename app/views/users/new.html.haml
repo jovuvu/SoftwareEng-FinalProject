@@ -1,54 +1,51 @@
-%h1{ :style => 'text-align:center'} Create an Account
+%div.narrowpage
+	%h1.subtitle{ :style => 'text-align:center'} Create an Account
 
-%h3 Already have an account? 
-= link_to "Sign In", signin_path
+	%fieldset.content{ :class => 'signup'}
+		= form_tag users_path, :method => :post do
+			%div{ :class => 'form-containers' }
+			= label :user, :name_first, 'First Name'
+			%br
+			= text_field :user, :name_first, :placeholder => 'First Name', :class => "center font"
+			%br  
 
-%fieldset{ :class => 'signup'}
-  = form_tag users_path, :method => :post do
-    %div{ :class => 'form-containers' }
-      / First Name
-      = label :user, :name_first, 'First Name'
-      %br
-      = text_field :user, :name_first, :placeholder => 'First Name', :class => "center font"
-      %br  
+			= label :user, :name_last, 'Last Name'
+			%br
+			= text_field :user, :name_last, :placeholder => 'Last Name', :class => "center font"
+			%br 
 
-      / Last Name
-      = label :user, :name_last, 'Last Name'
-      %br
-      = text_field :user, :name_last, :placeholder => 'Last Name', :class => "center font"
-      %br 
+			= label :user, :dob, 'Birthdate'
+			%br
+			= date_select :user, :dob, :order => [:month, :day, :year], :start_year => Date.current.year, :end_year => 1900, :use_two_digit_numbers => true, :class => "center font"
+			%br
 
-      / Birthdate
-      = label :user, :dob, 'Birthdate'
-      %br
-      = date_select :user, :dob, :order => [:month, :day, :year], :start_year => Date.current.year, :end_year => 1900, :use_two_digit_numbers => true, :class => "center font"
-      %br
+			= label :user, :gender, 'Gender'
+			%br
+			= select :user, :gender, ['Male','Female','Not Sure'], :class => "center font"
+			%br
+			%br
 
-      / Gender
-      = label :user, :gender, 'Gender'
-      %br
-      = select :user, :gender, ['Male','Female','Not Sure'], :class => "center font"
-      %br
-      %br
+		%div{ :class => 'form-containers' }
+			= label :user, :email, 'Email'
+			%br
+			= text_field :user, :email
+			%br
+			%br
 
-    %div{ :class => 'form-containers' }
-      / Email
-      = label :user, :email, 'Email'
-      %br
-      = text_field :user, :email
-      %br
+			= label :user, :password, 'Password'
+			%br
+			= password_field :user, :password
+			%br
 
-      / Password
-      = label :user, :password, 'Password'
-      %br
-      = password_field :user, :password
-      %br
+			= label :user, :password_confirmation, 'Confirm Password'
+			= password_field :user, :password_confirmation
+			%br
+			%p.minor (Passwords should be at least 8 characters long)
+			%br
+			= submit_tag 'Sign Up'
 
-      / Confirm Password
-      = label :user, :password_confirmation, 'Confirm Password'
-      = password_field :user, :password_confirmation
-      %br
-      %p (Passwords should be at least 8 characters long)
-      %br
-
-      = submit_tag 'Sign Up'
+	%div.content
+		%br
+		%span.minor Already have an account? 
+		%span
+			= link_to "Sign In", signin_path

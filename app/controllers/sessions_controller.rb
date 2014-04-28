@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 		if user && user.authenticate(params[:session][:password])
 			# Sign the user in and redirect to user's profile
 			sign_in user
-			flash[:notice] = "Welcome #{current_user.name_first} #{current_user.name_last}!"
+			flash[:notice] = 'Welcome ' + current_user.name_first + '!'
 			redirect_to user
 		else
 

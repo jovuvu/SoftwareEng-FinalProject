@@ -1,25 +1,24 @@
-%div#page 
-	%h1 Profile Preferences
+%div.narrowpage 
+	%h2.subtitle Profile Preferences
 
 	= form_tag user_path(@user), :method => :put do
-		%div#content
+		%div.content
 			= label :user, :dob, 'Birthdate:'
 			= date_select :user, :dob, :order => [:month, :day, :year], :start_year => Date.current.year, :end_year => 1900, :use_two_digit_numbers => true
-		%div#content
+		%div.content
 			= label :user, :gender, 'Gender:'
 			= select :user, :gender, ['Male', 'Female']
-		%div#content
+		%div.content
 			= label :user, :interests, 'Interests:'
 			= text_area :user, :interests
-		%div#content
+		%div.content
 			= label :user, :quotes, 'Quotes:'
 			= text_area :user, :quotes
-		%div#content
+		%div.content
 			= label :user, :tv_and_movies, 'TV and Movies:'
 			= text_area :user, :tv_and_movies
-		%div#content
+		%div.content
 			= label :user, :music, 'Music:'
 			= text_area :user, :music
-
-		%br
-		= submit_tag 'Save Changes'
+		%div.content
+			= submit_tag 'Save Changes'
