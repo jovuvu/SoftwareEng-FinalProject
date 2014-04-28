@@ -12,6 +12,9 @@ class UsersController < ApplicationController
   def show
     id = params[:id] # retrieve user ID from URI route
     @user = User.find(id)
+    query = {}
+    query[:conditions] = ["parent is (?)", "newsfeed/#{@user.id}"]
+    @posts = Post.find(:all, query)
   end
 
   # GET /users/new
