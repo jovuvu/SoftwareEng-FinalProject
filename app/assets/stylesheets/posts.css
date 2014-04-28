@@ -2,3 +2,19 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+table#posts
+{
+	width: 100%;
+	border-spacing: 10px;
+}
+
+table#posts td
+{
+	text-align: center;
+	padding: 2%;
+	width: 25%;
+	border-radius: 25px;
+	vertical-align: top;
+	background-color: #393A3B;
+	color: white;
+}

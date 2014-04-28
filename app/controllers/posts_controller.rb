@@ -21,13 +21,17 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post = Post.find params[:id]
   end
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @newPost = params[:post]
+    @newPost[:user_id] = params[:user_id]
+    @newPost[:parent] = "newsfeed/#{params[:user_id]}"
+    @post = Post.create!(post_params)
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to "/users/#{params[:user_id]}/posts", notice: 'Post was successfully created.'
     else
       render action: 'new'
     end
@@ -36,7 +40,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
+      @post.update_attributes!(post_params)
     else
       render action: 'edit'
     end
@@ -56,6 +60,6 @@ class PostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params[:post]
+      params.require(:post).permit(:content,:user_id,:parent,:children)
     end
 end

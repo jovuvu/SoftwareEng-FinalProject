@@ -1,14 +1,18 @@
-%h1 Listing posts
+%div.page
+  %title #{@user.name_first} #{@user.name_last}'s Newsfeed
+  %p#notice= notice
 
-
-%table#posts
-  %tbody
+  %table#posts
     - @posts.each do |post|
       %tr
-        %td= post.user_id
-        %td= post.content
-
-%br
-
-= link_to 'New Post', new_user_post_path
-
+        %td 
+          #{post.content}
+          %br 
+          %span.subtitle Posted by: #{post.author.name_first.capitalize} #{post.author.name_last.capitalize} on 
+          %span.minor #{post.created_at}
+          %br 
+  
+  %br
+  
+  = link_to 'New Post', new_user_post_path
+  

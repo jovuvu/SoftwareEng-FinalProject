@@ -1,5 +1,10 @@
-%h1 New post
-
-= render 'form'
-
-= link_to 'Back', user_posts_path
+%div.narrowpage 
+  %h2.subtitle Post a Message
+  
+  = form_tag user_posts_path, :method => :post do
+    %div.content
+      = text_area :post, :content
+    %div.content
+      = submit_tag 'Save Post'
+    %div.content
+      = link_to 'Back', user_posts_path
