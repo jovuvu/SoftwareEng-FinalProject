@@ -3,11 +3,13 @@
 %table#users
   %thead
     %tr
+      %th ID
       %th Name
       %th Friend
   %tbody
     - @users.each do |user|
       %tr
+        %td= user.id
         %td= user.name_first + " " + user.name_last
         
         - if (current_user && user.email == current_user.email)
