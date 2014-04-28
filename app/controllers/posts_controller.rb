@@ -26,14 +26,18 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @newPost = params[:post]
-    @newPost[:user_id] = params[:user_id]
-    @newPost[:parent] = "newsfeed/#{params[:user_id]}"
-    @post = Post.create!(post_params)
-    if @post.save
-      redirect_to "/users/#{params[:user_id]}/posts", notice: 'Post was successfully created.'
+    if !current_user.nil?
+      @newPost = params[:post]
+      @newPost[:user_id] = current_user.id
+      @newPost[:parent] = "newsfeed/#{params[:user_id]}"
+      @post = Post.create!(post_params)
+      if @post.save
+        redirect_to "/users/#{params[:user_id]}/posts", notice: 'Post was successfully created.'
+      else
+        render action: 'new'
+      end
     else
-      render action: 'new'
+      redirect_to "/users/#{params[:user_id]}/posts", notice: 'You must be logged in to post.'
     end
   end
 
