@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
 			# Sign the user in and redirect to user's profile
 			sign_in user
 			flash[:notice] = 'Welcome ' + current_user.name_first + '!'
+			session[:user_id] = user.id
 			redirect_to user
 		else
 

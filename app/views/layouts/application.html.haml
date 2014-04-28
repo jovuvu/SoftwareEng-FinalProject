@@ -14,6 +14,9 @@
           %span
             = link_to 'User List', users_path 
           %br
+          / %span
+          /   = link_to "#{session[:user_id]}"
+          / %br
           %span
             = link_to "#{current_user.name_first} #{current_user.name_last}", current_user
           %br
