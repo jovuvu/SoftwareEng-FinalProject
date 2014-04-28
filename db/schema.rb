@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427220808) do
+ActiveRecord::Schema.define(version: 20140428045100) do
 
   create_table "posts", force: true do |t|
     t.text     "content"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140427220808) do
   end
 
   create_table "relationships", force: true do |t|
-    t.integer  "receiving_user_id"
     t.integer  "requesting_user_id"
+    t.integer  "receiving_user_id"
     t.boolean  "confirmed"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20140427220808) do
     t.text     "quotes"
     t.text     "tv_and_movies"
     t.text     "music"
-    t.text     "friends"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"

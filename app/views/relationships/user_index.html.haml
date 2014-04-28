@@ -1,0 +1,25 @@
+%h1 Listing User's Relationships
+
+%table
+  %tr
+    %th Requesting ID
+    %th Receiving ID
+    %th Confirmed
+    %th Time Sent
+
+  - @incoming_relationships.each do |relationship|
+    %tr
+      %td= relationship.requesting_user_id
+      %td= relationship.receiving_user_id
+      %td= relationship.confirmed
+
+  - @outgoing_relationships.each do |relationship|
+    %tr
+      %td= relationship.requesting_user_id
+      %td= relationship.receiving_user_id
+      %td= relationship.confirmed
+      
+
+%br
+
+= link_to 'New Relationship', users_path

@@ -9,7 +9,7 @@
 	%br
 	= link_to 'Find Friend', users_path
 	%br
-	= link_to 'List My Friends', user_relationships_path(@user)
+	= link_to 'List My Friends', :controller => :relationships, :action => :user_index
 
 	%div#content
 		%span Email:

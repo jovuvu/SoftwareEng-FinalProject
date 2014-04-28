@@ -59,6 +59,6 @@ end
 end
 
 @blah.each do |user|
-  user.friends = @ids
+  # user.friends = @ids
   user.save
 end

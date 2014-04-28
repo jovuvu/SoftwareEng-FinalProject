@@ -1,7 +1,10 @@
 SoftwareEngFinalProject::Application.routes.draw do
 
+  resources :relationships
+
   resources :users do
-    resources :posts, :relationships
+    resources :posts
+    # resources :relationships, only: [:index, :show]
   end
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -14,8 +17,10 @@ SoftwareEngFinalProject::Application.routes.draw do
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
-  # get '/users/:user_id/friends' => 'relationships#index', :path_prefix => 'friends'
-  # post '/users/:user_id/friends' => 'relationships#create', :path_prefix => 'request_friend'
+  match 'users/:id/relationships(.:format)', to: 'relationships#user_index', via: 'get'
+
+  # get '/users/:user_id/friends' => 'relationships#index'
+  # post '/users/:user_id/friends' => 'relationships#create'
 
   # resources :relationships
 

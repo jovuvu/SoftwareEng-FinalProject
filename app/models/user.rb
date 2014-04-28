@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   	# each user has many posts, creates each users' personalized news feed
   	has_many :posts
-  	has_many :relationships
+  	# has_many :relationships
   	# has_many :friends, :through => :relationships
 
   	def User.new_remember_token
@@ -31,21 +31,6 @@ class User < ActiveRecord::Base
   	def User.digest(token)
   		Digest::SHA1.hexdigest(token.to_s)
   	end
-
-
-
-    def add_relationship(relationship)
-      @new_relationship = Relationship.new
-      @new_relationship.requesting_user_id = relationship.requesting_user_id
-      @new_relationship.receiving_user_id = relationship.receiving_user_id
-      @new_relationship.confirmed = relationship.confirmed
-      @new_relationship.save
-    end
-
-    def update_relationship(relationship)
-      @updated = Relationship.where( :requesting_user_id => relationship.requesting_user_id,
-        :receiving_user_id => relationship.receiving_user_id )
-    end
 
 
 

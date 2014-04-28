@@ -2,41 +2,32 @@ class RelationshipsController < ApplicationController
   include SessionsHelper
   before_action :set_relationship, only: [:show, :edit, :update, :destroy]
 
-
   # GET /relationships
   def index
-    # @relationships = Relationship.all
-    @received_relationships = Relationship.where(:receiving_user_id => params[:user_id])
-    @requested_relationships = Relationship.where(:requesting_user_id => params[:user_id])
-    @confirmed_relationships = Relationship.where(:confirmed => "true")
+    @relationships = Relationship.all
+  end
+
+  def user_index
+    @outgoing_relationships = Relationship.where(:requesting_user_id => current_user.id)
+    @incoming_relationships = Relationship.where(:receiving_user_id => current_user.id)
+    @confirmed_relationships = Relationship.where(:confirmed => true)
+    
   end
 
   # GET /relationships/1
   def show
 
+
   end
 
   # GET /relationships/new
   def new
-
-
-
-    # create relationship
     @relationship = Relationship.new
-    @relationship.receiving_user_id = params[:user_id]
     @relationship.requesting_user_id = current_user.id
-    @relationship.confirmed = false
-
-    # set user variables
-    @receiving_user = User.find(@relationship.receiving_user_id)
-    @requesting_user = User.find(@relationship.requesting_user_id)
-
-    received = @receiving_user.add_relationship(@relationship)
-    requested = @requesting_user.add_relationship(@relationship)
-
-    # if @requested_relationship.save
-    #   # redirect_to user_relationships_path(current_user.id), notice: "Friend Request sent to #{@receiving_user.name_first} #{@receiving_user.name_last}!"
-    # end
+    @relationship.receiving_user_id = params[:format]
+    @relationship.confirmed = current_user.id
+    @relationship.save
+    redirect_to "/users/#{current_user.id}/relationships"
 
   end
 
@@ -67,7 +58,7 @@ class RelationshipsController < ApplicationController
   # DELETE /relationships/1
   def destroy
     @relationship.destroy
-    redirect_to user_relationships_url(current_user), notice: 'Relationship was successfully destroyed.'
+    redirect_to relationships_url, notice: 'Relationship was successfully destroyed.'
   end
 
   private
@@ -78,7 +69,6 @@ class RelationshipsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def relationship_params
-      # params[:relationship]
-      params.require(:relationship).permit(:receiving_user_id, :requesting_user_id, :confirmed)
+      params[:relationship]
     end
 end

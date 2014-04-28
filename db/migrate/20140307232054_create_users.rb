@@ -12,7 +12,7 @@ class CreateUsers < ActiveRecord::Migration
       t.text :quotes
       t.text :tv_and_movies
       t.text :music
-      t.text :friends
+      # t.text :friends
       t.timestamps
     end
   end
