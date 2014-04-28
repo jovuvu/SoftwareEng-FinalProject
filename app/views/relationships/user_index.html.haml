@@ -2,31 +2,47 @@
 
 %table
   %tr
-    %th Requesting ID
-    %th Receiving ID
-    %th Confirmed
-    %th Time Sent
+    / %th Requesting ID
+    / %th Receiving ID
+    / %th Confirmed
+    / %th Accept
+  - if @incoming_relationships.count > 0
+    - @incoming_relationships.each do |relationship|
+      / pink
+      %tr{ :style => "background: #faa"}
+        - @friend = User.find(relationship.requesting_user_id)
+        %td= relationship.requesting_user_id
+        %td= relationship.receiving_user_id
+        %td= relationship.confirmed
+        %td= link_to "#{@friend.name_first} #{@friend.name_last}", user_path(@friend)
+        %td= link_to "Accept", relationship_path(relationship), :method => :patch
 
-  - @incoming_relationships.each do |relationship|
-    / pink
-    %tr{ :style => "background: #faa"}
-      %td= relationship.requesting_user_id
-      %td= relationship.receiving_user_id
-      %td= relationship.confirmed
+  - if @outgoing_relationships.count > 0
+    - @outgoing_relationships.each do |relationship|
+      / green
+      %tr{ :style => "background: #afa"}
+        - @friend = User.find(relationship.receiving_user_id)
+        %td= relationship.requesting_user_id
+        %td= relationship.receiving_user_id
+        %td= relationship.confirmed
+        %td= link_to "#{@friend.name_first} #{@friend.name_last}", user_path(@friend)
+        %td Request Sent
 
-  - @outgoing_relationships.each do |relationship|
-    / green
-    %tr{ :style => "background: #afa"}
-      %td= relationship.requesting_user_id
-      %td= relationship.receiving_user_id
-      %td= relationship.confirmed
-  
-  - @confirmed_relationships.each do |relationship|
-    / blue
-    %tr{ :style => "background: #aaf"}
-      %td= relationship.requesting_user_id
-      %td= relationship.receiving_user_id
-      %td= relationship.confirmed   
+  - if @confirmed_relationships.count > 0
+    - @confirmed_relationships.each do |relationship|
+      / blue
+      %tr{ :style => "background: #aaf"}
+
+        - if relationship.receiving_user_id == current_user.id
+          - @friend = User.find(relationship.requesting_user_id)
+        - else
+          - @friend = User.find(relationship.receiving_user_id)
+
+        %td= relationship.requesting_user_id
+        %td= relationship.receiving_user_id
+        %td= relationship.confirmed
+        %td= link_to "#{@friend.name_first} #{@friend.name_last}", user_path(@friend)
+        %td Confirmed  
 
 %br
 

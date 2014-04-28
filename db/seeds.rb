@@ -52,13 +52,13 @@ users.each do |user|
   User.create!(user)
 end
 
-@blah = User.all
-@ids = Array.new
-@blah.each do |user|
-  @ids.push(user.id)
-end
+# @blah = User.all
+# @ids = Array.new
+# @blah.each do |user|
+#   @ids.push(user.id)
+# end
 
-@blah.each do |user|
-  # user.friends = @ids
-  user.save
-end
+# @blah.each do |user|
+#   # user.friends = @ids
+#   user.save
+# end

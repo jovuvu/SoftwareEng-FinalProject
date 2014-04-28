@@ -18,6 +18,7 @@ SoftwareEngFinalProject::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
   match 'users/:id/relationships(.:format)', to: 'relationships#user_index', via: 'get'
+  match 'users/:id/relationships(.:format)', to: 'relationships#update', via: 'patch'
 
   # get '/users/:user_id/friends' => 'relationships#index'
   # post '/users/:user_id/friends' => 'relationships#create'

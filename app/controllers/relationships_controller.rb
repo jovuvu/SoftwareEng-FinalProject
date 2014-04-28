@@ -9,11 +9,13 @@ class RelationshipsController < ApplicationController
 
   def user_index
     # @outgoing_relationships = Relationship.where(:requesting_user_id => params[:user_id])
-    @outgoing_relationships = Relationship.where(:requesting_user_id => current_user.id)
+    @outgoing_relationships = Relationship.where(:requesting_user_id => current_user.id, :confirmed => false)
     # @incoming_relationships = Relationship.where(:receiving_user_id => params[:user_id])
-    @incoming_relationships = Relationship.where(:receiving_user_id => current_user.id)
+    @incoming_relationships = Relationship.where(:receiving_user_id => current_user.id, :confirmed => false)
     @confirmed_relationships = Relationship.where(:confirmed => true)
     
+    # relationship
+
   end
 
   # GET /relationships/1
@@ -50,11 +52,16 @@ class RelationshipsController < ApplicationController
 
   # PATCH/PUT /relationships/1
   def update
-    if @relationship.update(relationship_params)
-      redirect_to @relationship, notice: 'Relationship was successfully updated.'
-    else
-      render action: 'edit'
-    end
+
+    logger.debug "-------------------------------------------------"
+    logger.debug "RELATIONSHIP: #{@relationship.attributes.inspect}"
+    logger.debug "-------------------------------------------------"
+
+    
+      @relationship.update( :confirmed => true)
+      redirect_to current_user, notice: 'Friendship confirmed!'
+
+   
   end
 
   # DELETE /relationships/1
@@ -62,6 +69,8 @@ class RelationshipsController < ApplicationController
     @relationship.destroy
     redirect_to relationships_url, notice: 'Relationship was successfully destroyed.'
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -2,6 +2,7 @@
 
 %table
   %tr
+    %th ID
     %th Requesting ID
     %th Receiving ID
     %th Confirmed
@@ -9,6 +10,7 @@
 
   - @relationships.each do |relationship|
     %tr
+      %td= relationship.id
       %td= relationship.requesting_user_id
       %td= relationship.receiving_user_id
       %td= relationship.confirmed
