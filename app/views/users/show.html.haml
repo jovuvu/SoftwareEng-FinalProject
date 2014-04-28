@@ -46,8 +46,8 @@
 				#{@user.music}
 	%div.wall
 		%h2.title #{@user.name_first}'s Wall
-  		-@posts.each do |posts|
-    		%div.post
-    			%span.author Posted by: #{post.author.name_first.capitalize} #{post.author.name_last.capitalize}:
-    			%p #{post.content}
-    			.timestamp #{post.created_at}
+			-@posts.each do |posts|
+				%div.post
+					%span.author Posted by: #{post.author.name_first.capitalize} #{post.author.name_last.capitalize}:
+					%p #{post.content}
+					.timestamp #{post.created_at}
