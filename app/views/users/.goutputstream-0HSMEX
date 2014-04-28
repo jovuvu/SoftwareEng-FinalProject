@@ -52,3 +52,4 @@
 				%p #{post.content}
 				.timestamp #{post.created_at}
 		%br
+		= link_to 'New Post', new_user_post_path
