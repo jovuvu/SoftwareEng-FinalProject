@@ -2,72 +2,86 @@
 %p#notice= notice
 = link_to 'Find Your Friends', users_path
 
-%h2 Incoming Friend Requests
+/ %h2 Incoming Friend Requests
+/ = link_to @received_relationships.count
+
+/ - if !@receieved_relationships.nil?
+/   %table
+/     %tr
+/       %th Receiving User's ID
+/       %th Requesting User's ID
+/       %th Confirmed
+/       %th Created
+/   - @received_relationships.each do |relationship|
+/     %tr
+/       %td= relationship.receiving_user_id
+/       %td= relationship.requesting_user_id
+/       %td= relationship.confirmed
+/       %td= relationship.created_at
+/       %td= link_to 'Destroy', user_relationship_path(relationship.requesting_user_id, relationship), :method => :delete, :data => { :confirm => 'Are you sure?' }
+/ - else 
+/   %h3 No Incoming Friend Requests
+
+
+
+/ %h2 Outgoing Friend Requests
+/ = link_to @requested_relationships.count
+
+/ - if !@requested_relationships.nil?
+/   %table
+/     %tr
+/       %th Receiving User's ID
+/       %th Requesting User's ID
+/       %th Confirmed
+/       %th Created
+/   - @requested_relationships.each do |relationship|
+/     %tr
+/       %td= relationship.receiving_user_id
+/       %td= relationship.requesting_user_id
+/       %td= relationship.confirmed
+/       %td= relationship.created_at
+/       %td= link_to 'Destroy', user_relationship_path(relationship.requesting_user_id, relationship), :method => :delete, :data => { :confirm => 'Are you sure?' }
+/ - else 
+/   %h3 No Outgoing Friend Requests
+
+
+/ %h2 Friends 
+/ = link_to @confirmed_relationships.count
+
+/ - if !@confirmed_relationships.nil?
+/   %table
+/     %tr
+/       %th Receiving User's ID
+/       %th Requesting User's ID
+/       %th Confirmed
+/       %th Created
+/   - @confirmed_relationships.each do |relationship|
+/     %tr
+/       %td= relationship.receiving_user_id
+/       %td= relationship.requesting_user_id
+/       %td= relationship.confirmed
+/       %td= relationship.created_at
+/       %td= link_to 'Destroy', user_relationship_path(relationship.requesting_user_id, relationship), :method => :delete
+/ - else 
+/   %h3 No Friends
+/ %br
+
+
+
+
+
+
+%h2 All Relationships
 %table
   %tr
     %th Receiving User's ID
     %th Requesting User's ID
     %th Confirmed
     %th Created
-    /%th Delete
-
-  / - if !@requested_relationships.nil?
-  /   - @requested_relationships.each do |relationship|
-  /     %tr
-  /       %td= relationship.receiving_user_id
-  /       %td= relationship.requesting_user_id
-  /       %td= relationship.confirmed
-  /       %td= relationship.created_at
-  /       %td= link_to 'Destroy', user_relationship_path(relationship.requesting_user_id, relationship), :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-  - if !@receieved_relationships.nil?
-    - @received_relationships.each do |relationship|
-      %tr
-        %td= relationship.receiving_user_id
-        %td= relationship.requesting_user_id
-        %td= relationship.confirmed
-        %td= relationship.created_at
-        %td= link_to 'Destroy', user_relationship_path(relationship.requesting_user_id, relationship), :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-
-
-
-%h2 Outgoing Friend Requests
-%table
+- @received_relationships.each do |relationship|
   %tr
-    %th Receiving User's ID
-    %th Requesting User's ID
-    %th Confirmed
-    %th Created
-    /%th Delete
-
-  - if !@requested_relationships.nil?
-    - @requested_relationships.each do |relationship|
-      %tr
-        %td= relationship.receiving_user_id
-        %td= relationship.requesting_user_id
-        %td= relationship.confirmed
-        %td= relationship.created_at
-        %td= link_to 'Destroy', user_relationship_path(relationship.requesting_user_id, relationship), :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-
-%h2 Friends
-%table
-  %tr
-    %th Receiving User's ID
-    %th Requesting User's ID
-    %th Confirmed
-    %th Created
-    /%th Delete
-
-  - if !@confirmed_relationships.nil?
-    - @confirmed_relationships.each do |relationship|
-      %tr
-        %td= relationship.receiving_user_id
-        %td= relationship.requesting_user_id
-        %td= relationship.confirmed
-        %td= relationship.created_at
-        %td= link_to 'Destroy', user_relationship_path(relationship.requesting_user_id, relationship), :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-
-%br
+    %td= relationship.receiving_user_id
+    %td= relationship.requesting_user_id
+    %td= relationship.confirmed
+    %td= relationship.created_at
+    %td= link_to 'Destroy', user_relationship_path(relationship.requesting_user_id, relationship), :method => :delete, :data => { :confirm => 'Are you sure?' }
