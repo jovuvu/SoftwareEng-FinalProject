@@ -7,12 +7,12 @@
     %th Confirmed
     %th Time Sent
 
-- @relationships.each do |relationship|
-  %tr
-    %td= relationship.requesting_user_id
-    %td= relationship.receiving_user_id
-    %td= relationship.confirmed
-      
+  - @relationships.each do |relationship|
+    %tr
+      %td= relationship.requesting_user_id
+      %td= relationship.receiving_user_id
+      %td= relationship.confirmed
+        
 
 %br
 
