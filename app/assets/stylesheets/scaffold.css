@@ -12,15 +12,16 @@ pre {
   font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
-a:hover { color: #fff; background-color:#000; }
+a { color: #BA4B00; }
+a:visited { color: #823400; }
+a:hover { color: #E65C00; }
 
 div.field, div.actions {
   margin-bottom: 10px;
 }
 
 #notice {
+  text-align: center;
   color: green;
 }
 

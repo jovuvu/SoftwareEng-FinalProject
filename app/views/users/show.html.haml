@@ -1,34 +1,48 @@
 / User's Profile
-%div#page
+%div.page
 	%title #{@user.name_first} #{@user.name_last}'s Profile
 	%p#notice= notice
-	%h2 #{@user.name_first} #{@user.name_last}'s Profile
-	= link_to "#{@user.name_first} #{@user.name_last}'s Posts", user_posts_path(@user)
-	%br
-	= link_to 'Edit Profile', edit_user_path(@user)
-	%br
-	= link_to 'Find Friend', users_path
-	%br
-	= link_to 'List My Friends', user_relationships_path(@user)
-
-	%div#content
+	%h2.subtitle #{@user.name_first} #{@user.name_last}'s Profile
+	%div.subtitle
+		%span 
+			= link_to "#{@user.name_first} #{@user.name_last}'s Posts", user_posts_path(@user)
+		%span 
+			|
+		%span 
+			= link_to 'Edit Profile', edit_user_path(@user)
+		%span 
+			|
+		%span 
+			= link_to 'Find Friend', users_path
+		%span 
+			|
+		%span 
+			= link_to 'List My Friends', user_relationships_path(@user)
+	%div.subtitle
 		%span Email:
-		%span#minor #{@user.email}
-	%div#content
+		%span.minor #{@user.email}
 		%span Date of Birth:
-		%span#minor #{@user.dob.strftime('%m-%b-%Y')}
-	%div#content
+		%span.minor #{@user.dob.strftime('%m-%b-%Y')}
 		%span Gender:
-		%span#minor #{@user.gender}
-	%div#content
-		%span Interests:
-		%p #{@user.interests}
-	%div#content
-		%span Quotes:
-		%p #{@user.quotes}
-	%div#content
-		%span TV and Movies:
-		%p #{@user.tv_and_movies}
-	%div#content
-		%span Music:
-		%p #{@user.music}
+		%span.minor #{@user.gender}
+	%br
+	%table.user
+		%tr
+			%td 
+				%span.subtitle Interests:
+				%br
+				#{@user.interests}
+			%td 
+				%span.subtitle Quotes:
+				%br
+				#{@user.quotes}
+			%td
+				%span.subtitle TV & Movies:
+				%br
+				#{@user.tv_and_movies}
+			%td
+				%span.subtitle Music:
+				%br
+				#{@user.music}
+
+	%h3

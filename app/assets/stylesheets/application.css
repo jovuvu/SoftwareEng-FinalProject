@@ -29,12 +29,12 @@ body{
  	width: 100%;
  	margin: 0;
  	display: table;
- 	
  }
  	header h1.title{
- 		color: #fcfcf8;
+ 		color: #E65C00;
  		vertical-align: middle;
  		display: table-cell;
+ 		width: 85%;
  	}
 
  	a{
