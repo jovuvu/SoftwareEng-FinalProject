@@ -8,17 +8,25 @@
     %th Time Sent
 
   - @incoming_relationships.each do |relationship|
-    %tr
+    / pink
+    %tr{ :style => "background: #faa"}
       %td= relationship.requesting_user_id
       %td= relationship.receiving_user_id
       %td= relationship.confirmed
 
   - @outgoing_relationships.each do |relationship|
-    %tr
+    / green
+    %tr{ :style => "background: #afa"}
       %td= relationship.requesting_user_id
       %td= relationship.receiving_user_id
       %td= relationship.confirmed
-      
+  
+  - @confirmed_relationships.each do |relationship|
+    / blue
+    %tr{ :style => "background: #aaf"}
+      %td= relationship.requesting_user_id
+      %td= relationship.receiving_user_id
+      %td= relationship.confirmed   
 
 %br
 
