@@ -1,20 +1,13 @@
 / %h1 Add a Friend
-
-%table#users
-  %thead
-    %tr
-      %th ID
-      %th Name
-      %th Friend
-  %tbody
+%div.narrowpage
+  %h1.subtitle Find a Friend
+  %table#users
     - @users.each do |user|
-      %tr
-        %td= user.id
-        %td= user.name_first + " " + user.name_last
-        
+      %div.friendslist
+        %span= user.name_first + " " + user.name_last
         - if (current_user && user.email == current_user.email)
-          %td= link_to "My Profile", user_path(user)
+          %span= link_to "My Profile", user_path(user)
         - else
-          %td= link_to "Add Friend", new_relationship_path(user.id)
+          %span= link_to "Add Friend", new_relationship_path(user.id)
 
 %br
