@@ -13,16 +13,16 @@ Feature: Edit profile preferences and be redirected to the profile page.
 		And I entered my quotes: <quotes>
 		And I entered my tv_and_movies: <tv_and_movies>
 		And I entered my music: <music>
-		And I clicked the button Save Changes
+		And I Click on Save Changes
 		Then I should be redirected to my profile page
 		And I Should see my new <dob>
 		And I Should see my new <gender>
 		And I should see my new <interests>
 		And I should see my new <quotes>
 		And I should see my new <tv_and_movies>
-		And I should see my new <new_music>
+		And I should see my new <music>
 
 		Examples:
 		| email	                  | dob	       | gender | interests | quotes	       | tv_and_movies	  | music	            |
-		| Bob.Ross@colorado.edu   | 1991-05-08 | Male   | Puppies   | Puppies are cute | Game of Puppies  | The Rolling Puppies |
-		| billy.jean@colorado.edu | 1992-03-25 | Female | Kittens   | Kittens are nice | Breaking Kittens | Guns and Kittens    |
+		| Bob.Ross@colorado.edu   | 1991-May-08 | Male   | Puppies   | Puppies are cute | Game of Puppies  | The Rolling Puppies |
+		| billy.jean@colorado.edu | 1992-Mar-25 | Female | Kittens   | Kittens are nice | Breaking Kittens | Guns and Kittens    |

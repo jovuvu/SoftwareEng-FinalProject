@@ -12,9 +12,7 @@ class UsersController < ApplicationController
   def show
     id = params[:id] # retrieve user ID from URI route
     @user = User.find(id)
-    query = {}
-    query[:conditions] = ["parent is (?)", "newsfeed/#{@user.id}"]
-    @posts = Post.find(:all, query)
+    @posts = Post.where(:parent => "newsfeed/#{@user.id}")
   end
 
   # GET /users/new
@@ -24,7 +22,13 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find params[:id]
+    if (session[:user_id].to_s == params[:id])
+      @user = User.find params[:id]
+    else
+      @user = User.find params[:id]
+      flash[:notice] = "You cannot edit another users profile."
+      redirect_to @user
+    end
   end
 
   # POST /users

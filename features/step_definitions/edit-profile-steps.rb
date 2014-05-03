@@ -1,15 +1,23 @@
 #BDD Tests for editing profile preferences.
-
 Given (/^I am a user with the email (.+)$/) do |email|
-	@current_user = User.find_by_email(email)
+  @current_user = FactoryGirl.create(:user, email: email) 
+  visit ('/sessions/new')
+  fill_in('Email', with: email)
+  fill_in('Password', with: "password")
+  within ".content" do
+    click_on "Sign In"
+  end
+  current_path.should == path_to("my profile page", {"current_user" => @current_user})
 end
 
 Given(/^I navigate to the profile preferences$/) do
 	visit('/users/' + @current_user.id.to_s + '/edit')
 end
 
-Given(/^I Entered my dob: (\d+)\-(\d+)\-(\d+)$/) do |year, month, day|
-  select(month, from: 'user_dob_2i')
+Given(/^I Entered my dob: (\d+)\-(\w+)\-(\d+)$/) do |year, month, day|
+  @months = {"Jan" => "01", "Feb" => "02", "Mar" => "03", "Apr" => "04", "May" => "05", 
+  "Jun" => "06", "Jul" => "07", "Aug" => "08", "Sep" => "09", "Oct" => "10", "Nov" => "11", "Dec" => "12"}
+  select(@months[month], from: 'user_dob_2i')
   select(day, from: 'user_dob_3i')
   select(year, from: 'user_dob_1i')
 end
@@ -22,25 +30,21 @@ Given(/^I entered my (.+): (.+)$/) do |id, value|
 	fill_in('user_' + id, with: value)
 end
 
-Given(/^I clicked the button (.+)$/) do |value|
-	click_button(value)
+When /^I Click on (Save Changes)$/ do |button|
+  click_on button
 end
 
-#Then(/^I should be redirected to my profile page$/) do
-#  expect(current_path).to eq('/users/' + @current_user.id.to_s)
-#end
-
-Then(/^I Should see my new (\d+)\-(\d+)\-(\d+)$/) do |year, month, day|
-  page.has_content?(month)
-  page.has_content?(day)
-  page.has_content?(year)
+Then(/^I Should see my new (\d+)\-(\w+)\-(\d+)$/) do |year, month, day|
+  page.has_content?(month).should == true
+  page.has_content?(day).should == true
+  page.has_content?(year).should == true
 end
 
 Then(/^I Should see my new (Male|Female)$/) do |gender|
-  page.has_content?(gender)
+  page.has_content?(gender).should == true
 end
 
 Then(/^I should see my new (.+)$/) do |value|
-  page.has_content?(value)
+  page.has_content?(value).should == true
 end
 

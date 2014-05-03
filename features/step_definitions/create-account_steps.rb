@@ -7,7 +7,11 @@ Then /^I should be on (.+)$/ do |page_name|
   current_path.should == path_to(page_name)
 end
 
-When /^I Click on "(.*)"$/ do |button|
+When /^I Click on "(Create An Account)"$/ do |button|
+  click_on button
+end
+
+When /^I Click on "(Submit)"$/ do |button|
   click_on button
   @current_user = User.find_by_email(@usrEmail)
 end

@@ -9,7 +9,7 @@ module NavigationHelpers
         users_path
       when /^my profile page$/
         if options.has_key?("current_user")
-  
+          
           "/users/" + options["current_user"].id.to_s
         end
       
