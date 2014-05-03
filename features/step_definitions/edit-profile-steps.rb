@@ -26,9 +26,9 @@ Given(/^I clicked the button (.+)$/) do |value|
 	click_button(value)
 end
 
-Then(/^I should be redirected to my profile page$/) do
-  expect(current_path).to eq('/users/' + @current_user.id.to_s)
-end
+#Then(/^I should be redirected to my profile page$/) do
+#  expect(current_path).to eq('/users/' + @current_user.id.to_s)
+#end
 
 Then(/^I Should see my new (\d+)\-(\d+)\-(\d+)$/) do |year, month, day|
   page.has_content?(month)
