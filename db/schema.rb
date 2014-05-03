@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20140428045100) do
     t.text     "quotes"
     t.text     "tv_and_movies"
     t.text     "music"
-    t.text     "friends"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"

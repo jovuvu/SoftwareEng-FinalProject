@@ -12,8 +12,7 @@ class RelationshipsController < ApplicationController
     @outgoing_relationships = Relationship.where(:requesting_user_id => current_user.id, :confirmed => false)
     # @incoming_relationships = Relationship.where(:receiving_user_id => params[:user_id])
     @incoming_relationships = Relationship.where(:receiving_user_id => current_user.id, :confirmed => false)
-    @confirmed_relationships = Relationship.where(:confirmed => true)
-    
+    @confirmed_relationships = Relationship.where(:requesting_user_id => current_user.id, :confirmed => true)
     # relationship
 
   end
