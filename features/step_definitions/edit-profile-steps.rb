@@ -1,7 +1,7 @@
 #BDD Tests for editing profile preferences.
-Given (/^I am a user with the email (w+)$/) do |email|
+Given(/^I am a user with the email ([\w\.\@]+)$/) do |email|
   @current_user = FactoryGirl.create(:user, email: email) 
-  visit ('/sessions/new')
+  visit('/sessions/new')
   fill_in('Email', with: email)
   fill_in('Password', with: "password")
   within ".content" do
@@ -30,21 +30,21 @@ Given(/^I entered my (.+): (.+)$/) do |id, value|
 	fill_in('user_' + id, with: value)
 end
 
-When /^I Click on (Save Changes)$/ do |button|
+When(/^I Click on (Save Changes)$/) do |button|
   click_on button
 end
 
 Then(/^I Should see my new (\d+)\-(\w+)\-(\d+)$/) do |year, month, day|
-  page.has_content?(month).should == true
-  page.has_content?(day).should == true
-  page.has_content?(year).should == true
+  page.has_content?(month).should eq(true)
+  page.has_content?(day).should eq(true)
+  page.has_content?(year).should eq(true)
 end
 
 Then(/^I Should see my new (Male|Female)$/) do |gender|
-  page.has_content?(gender).should == true
+  page.has_content?(gender).should eq(true)
 end
 
 Then(/^I should see my new (.+)$/) do |value|
-  page.has_content?(value).should == true
+  page.has_content?(value).should eq(true)
 end
 

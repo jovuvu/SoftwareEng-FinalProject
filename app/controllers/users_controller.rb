@@ -39,6 +39,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:notice] = "Welcome"
+        session[:user_id] = @user.id
       redirect_to @user
     else
       render 'new'
