@@ -33,7 +33,7 @@ Feature: Users can view profile information on any profile page
 		
 	Scenario Outline: View a users profile when you are NOT their friend.
 		Given I've logged in successfully as "<Email>" with password: "<Password>"
-		And I am NOT friends with a user with the email "<Other_Email>"
+		And I am NOT friends with a user with the email "<Other_Email>" and the first name "<Other_First>"
 		And I am on his profile page
 		Then I should see "Only <Other_First>'s friends can view their profile"
 

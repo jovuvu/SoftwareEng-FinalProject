@@ -8,9 +8,14 @@ Given(/^I am logged in as a user with email "(.+)" and password "(.+)"$/) do |em
   step "I should be redirected to my profile page"
 end
 
-Given(/^I am\s?(.*)? friends with a user with the email "(.+)"$/) do |optional, friend_email|
-  @current_friend=FactoryGirl.create(:user, email: friend_email)
-  if (optional.nil? == true)
+Given(/^I am\s?(.*)? friends with a user with the email "(.+)"$/) do |optional, args|
+  case args
+  when  /^(.+)" and the first name "(.+)$/
+    @current_friend=FactoryGirl.create(:user, email: $1,name_first: $2)
+  when /^([^"]+)$/
+    @current_friend=FactoryGirl.create(:user, email: $1)
+  end
+  if (optional == "")
     FactoryGirl.create(:relationship, requesting_user_id: @current_user.id.to_s, receiving_user_id: @current_friend.id.to_s)
     visit path_to("my friends list", {"current_user"=>@current_user})
     page.all(".friendslist").each do |e1|
@@ -23,7 +28,7 @@ end
 
 Given(/^I am on his profile page$/) do
   visit path_to("profile page for user", {"user"=>@current_friend})
-  page.has_content?(@current_friend.email.to_s).should == true
+  current_path.should == path_to("profile page for user", {"user"=>@current_friend})
 end
 
 Then(/^I should see (.+)$/) do |attribute|
