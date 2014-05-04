@@ -1,5 +1,5 @@
 #BDD Tests for editing profile preferences.
-Given (/^I am a user with the email (.+)$/) do |email|
+Given (/^I am a user with the email (w+)$/) do |email|
   @current_user = FactoryGirl.create(:user, email: email) 
   visit ('/sessions/new')
   fill_in('Email', with: email)
