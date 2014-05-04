@@ -31,3 +31,13 @@ Feature: User can login to their account
 		| Email	                  | Password	|
 		| Bob.Ross@colorado.edu   | happytrees	|
 		| billy.jean@colorado.edu | aintmyson	|
+		
+	Scenario Outline: Login and view my friends
+		Given I've logged in successfully as "<Email>" with password: "<Password>"
+		When I Click on "List My Friends"
+		Then I should see "Listing User's Relationships"
+		
+		Examples:
+		| Email	                  | Password	|
+		| Bob.Ross@colorado.edu   | happytrees	|
+		| billy.jean@colorado.edu | aintmyson	|

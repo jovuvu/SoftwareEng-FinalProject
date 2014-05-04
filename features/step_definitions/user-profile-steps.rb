@@ -8,14 +8,15 @@ Given(/^I am logged in as a user with email "(.+)" and password "(.+)"$/) do |em
   step "I should be redirected to my profile page"
 end
 
-Given(/^I am friends with a user with the email "(.+)"$/) do |friend_email|
+Given(/^I am\s?(.*)? friends with a user with the email "(.+)"$/) do |optional, friend_email|
   @current_friend=FactoryGirl.create(:user, email: friend_email)
-  FactoryGirl.create(:relationship, requesting_user_id: @current_user.id.to_s, receiving_user_id: @current_friend.id.to_s)
-  #Relationship.where(:requesting_user_id => @current_user.id.to_s, :receiving_user_id => @current_friend.id.to_s).nil?.should == false
-  visit path_to("my friends list", {"current_user"=>@current_user})
-  page.all(".friendslist").each do |e1|
-    if e1.find("a")["href"] == path_to("profile page for user", {"user"=>@current_friend})
-      e1.has_content?("Confirmed").should == true
+  if (optional.nil? == true)
+    FactoryGirl.create(:relationship, requesting_user_id: @current_user.id.to_s, receiving_user_id: @current_friend.id.to_s)
+    visit path_to("my friends list", {"current_user"=>@current_user})
+    page.all(".friendslist").each do |e1|
+      if e1.find("a")["href"] == path_to("profile page for user", {"user"=>@current_friend})
+        e1.has_content?("Confirmed").should == true
+      end
     end
   end
 end
@@ -25,27 +26,33 @@ Given(/^I am on his profile page$/) do
   page.has_content?(@current_friend.email.to_s).should == true
 end
 
-Then(/^I should see their (.+)$/) do |attribute|
+Then(/^I should see (.+)$/) do |attribute|
   content = nil
   case attribute
-    when "name_first"
+    when "their name_first"
       content = @current_friend.name_first
-    when "name_last"
+    when "their name_last"
       content = @current_friend.name_last
-    when "email"
+    when "their email"
       content = @current_friend.email
-    when "dob"
+    when "their dob"
       content = @current_friend.dob.strftime('%d-%b-%Y')
-    when "gender"
+    when "their gender"
       content = @current_friend.gender
-    when "interests"
+    when "their interests"
       content = @current_friend.interests
-    when "quotes"
+    when "their quotes"
       content = @current_friend.quotes
-    when "tv_and_movies"
+    when "their tv_and_movies"
       content = @current_friend.tv_and_movies
-    when "music"
+    when "their music"
       content = @current_friend.music
+    when /"(.+)"/
+      content = $1
+    when /my new (.+)/
+      content = $1
+    else
+      content = attribute
   end
   content.nil?.should eq(false)
   page.has_content?(content).should eq(true)

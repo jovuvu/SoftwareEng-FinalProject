@@ -21,8 +21,10 @@ class User < ActiveRecord::Base
 
   	# each user has many posts, creates each users' personalized news feed
   	has_many :posts
-  	# has_many :relationships
-  	# has_many :friends, :through => :relationships
+  	has_many :relationships, -> {where confirmed: true}, :foreign_key => "requesting_user_id"
+  	has_many  :friends, 
+  	          :through => :relationships, 
+  	          :source => :friend
 
   	def User.new_remember_token
   		SecureRandom.urlsafe_base64

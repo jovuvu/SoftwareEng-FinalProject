@@ -10,11 +10,15 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    id = params[:id] # retrieve user ID from URI route
-    @user = User.find(id)
-    @posts = Post.where(:parent => "newsfeed/#{@user.id}")
+    @authorized = false
+    if(session[:user_id.to_s].nil? == false)
+      id = params[:id] # retrieve user ID from URI route
+      @current_user = User.find(session[:user_id.to_s])
+      @profile_owner = User.find(id)
+      #if(@profile_owner.friends)
+      @posts = Post.where(:parent => "newsfeed/#{@user.id}")
+    end
   end
-
   # GET /users/new
   def new
     @user = User.new

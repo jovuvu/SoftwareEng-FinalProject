@@ -32,10 +32,10 @@ Feature: Users can view profile information on any profile page
 		| billy.jean@colorado.edu | aintmyson	|	Bob.ross@colorado.edu	|
 		
 	Scenario Outline: View a users profile when you are NOT their friend.
-		Given I am logged in as a user with email "<Email>" and password "<Password>"
+		Given I've logged in successfully as "<Email>" with password: "<Password>"
 		And I am NOT friends with a user with the email "<Other_Email>"
 		And I am on his profile page
-		Then I should see "Only #{Other_First}'s friends can view his profile"
+		Then I should see "Only <Other_First>'s friends can view their profile"
 
 		Examples:
 		| Email	                  | Password	|	Other_Email					|	Other_First		|

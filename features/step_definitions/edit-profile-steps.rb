@@ -44,7 +44,4 @@ Then(/^I Should see my new (Male|Female)$/) do |gender|
   page.has_content?(gender).should eq(true)
 end
 
-Then(/^I should see my new (.+)$/) do |value|
-  page.has_content?(value).should eq(true)
-end
 
