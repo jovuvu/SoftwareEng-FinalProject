@@ -30,10 +30,8 @@ div {
   color: lightgreen;
 }
 
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+.field_with_errors input{
+  background-color: #FFa8c5;
 }
 
 #error_explanation {
@@ -53,8 +51,12 @@ div {
     background-color: #c00;
     color: #fff;
   }
+  ul{
+    padding: 0px;
+    margin: 0px;
+  }
   ul li {
     font-size: 12px;
-    list-style: square;
+    list-style: none;
   }
 }

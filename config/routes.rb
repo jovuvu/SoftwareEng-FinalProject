@@ -2,7 +2,7 @@ SoftwareEngFinalProject::Application.routes.draw do
 
   resources :relationships
 
-  resources :users do
+  resources :users, except: :create do
     resources :posts
     # resources :relationships, only: [:index, :show]
   end
@@ -14,6 +14,7 @@ SoftwareEngFinalProject::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'sessions#new'
   match '/signup', to: 'users#new', via: 'get'
+  match '/signup', to: 'users#create', via: 'post'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 

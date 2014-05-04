@@ -36,7 +36,7 @@
       - if flash[:warning]
         #warning.message= flash[:warning]
       - elsif flash[:error]
-        #error.message= flash[:error]
+        = render "shared/formatted_error_flash", :error => flash[:error]
       - elsif flash[:success]
         #error.message= flash[:success]
 

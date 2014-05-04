@@ -1,7 +1,8 @@
 %div.narrowpage
 	%h1.subtitle{ :style => 'text-align:center'} Create an Account
+	%p#error_simple flash[:error]
 	%fieldset.content{ :class => 'signup'}
-		= form_tag signup_path, :method => :post do
+		= form_tag users_path, :method => :post do
 			%div{ :class => 'form-containers' }
 				= label :user, :name_first, 'First Name'
 				%br

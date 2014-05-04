@@ -34,15 +34,21 @@ class UsersController < ApplicationController
   # POST /users
   def create
     # @user = User.create(user_params)
-    
-    @user = User.create!(user_params)
-    if @user.save
-      sign_in @user
-      flash[:notice] = "Welcome"
-        session[:user_id] = @user.id
-      redirect_to @user
-    else
-      render 'new'
+    begin
+      @user = User.new(user_params)
+      if @user.save!
+        sign_in @user
+        flash[:notice] = "Welcome"
+          session[:user_id] = @user.id
+        redirect_to @user
+      end
+      rescue ActiveRecord::RecordInvalid => e
+        strBuff = e.record.errors.messages.inspect
+        strBuff = strBuff .gsub(":name_first", '"First Name"')
+        strBuff = strBuff .gsub(":name_last", '"Last Name"')
+        strBuff = strBuff .gsub(":password_confirmation", '"Confirm Password"')
+        flash[:error] = strBuff
+        render 'new'
     end
 
   end

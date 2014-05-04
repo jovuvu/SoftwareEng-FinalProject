@@ -3,7 +3,7 @@ module NavigationHelpers
   def path_to(page_name, options = {})
     case page_name
       when /^the Login Page$/
-        
+
       when /^the signup page$/
         signup_path
       when /^the users listing page/
