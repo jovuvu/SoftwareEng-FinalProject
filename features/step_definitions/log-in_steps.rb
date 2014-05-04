@@ -1,5 +1,7 @@
-Given(/^I am a user with the email "(.+)" and password "(.+)"$/) do |email, password|
-  @current_user = FactoryGirl.create(:user, email: email, password: password, password_confirmation: password)
+Given(/^I am a\s?(new)? user with the email "(.+)" and password "(.+)"$/) do |new, email, password|
+  if new.nil?
+    @current_user = FactoryGirl.create(:user, email: email, password: password, password_confirmation: password)
+  end
 end
 
 Given(/^I am on the Login Page$/) do

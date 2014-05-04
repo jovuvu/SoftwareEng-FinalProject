@@ -30,7 +30,11 @@ div.field, div.actions {
   background-color: red;
   display: table;
 }
-
+#error_simple {
+  text-align: center;
+  background-color: #f0f0f0;
+  color: red;
+}
 #error_explanation {
   width: 450px;
   border: 2px solid red;

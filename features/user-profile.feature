@@ -4,7 +4,7 @@ Feature: Users can view profile information on any profile page
 	So that I can learn a little bit about another user
 	I want to be able to see profile information on user profile pages
 	
-	Scenario Outline:
+	Scenario Outline: View a users profile when you are their friend.
 		Given I am logged in as a user with email "<Email>" and password "<Password>"
 		And I am friends with a user with the email "<Friend_Email>"
 		And I am on his profile page
@@ -30,3 +30,14 @@ Feature: Users can view profile information on any profile page
 		| Email	                  | Password	|	Friend_Email	|
 		| Bob.Ross@colorado.edu   | happytrees	|	billy.jean@colorado.edu		|
 		| billy.jean@colorado.edu | aintmyson	|	Bob.ross@colorado.edu	|
+		
+	Scenario Outline: View a users profile when you are NOT their friend.
+		Given I am logged in as a user with email "<Email>" and password "<Password>"
+		And I am NOT friends with a user with the email "<Other_Email>"
+		And I am on his profile page
+		Then I should see "Only #{Other_First}'s friends can view his profile"
+
+		Examples:
+		| Email	                  | Password	|	Other_Email					|	Other_First		|
+		| Bob.Ross@colorado.edu   | happytrees	|	billy.jean@colorado.edu		|	Bob				|
+		| billy.jean@colorado.edu | aintmyson	|	Bob.ross@colorado.edu		|	Billy			|
