@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     query = {}
-    query = ["parent is (?)", "wall/" + params[:user_id]]
+    query = ["parent = 'wall/#{params[:user_id]}'"]
     @posts = Post.where(query)
   end
 
