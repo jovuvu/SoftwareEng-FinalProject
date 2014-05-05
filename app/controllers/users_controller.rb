@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       @current_user = User.find(session[:user_id.to_s])
       @user = User.find(id)
     end
-    @posts = Post.where(:parent => "newsfeed/#{@user.id}")
+    @posts = Post.where(:parent => "wall/#{@user.id}")
   end
   # GET /users/new
   
@@ -72,8 +72,10 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    if(@auth_admin)
+      @user.destroy
+      redirect_to users_url, notice: 'User was successfully destroyed.'
+    end
   end
 
   private

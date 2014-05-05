@@ -43,6 +43,7 @@ class RelationshipsController < ApplicationController
 
   # PATCH/PUT /relationships/1
   def update
+    debugger
     @incoming_relationship.update_all(status: "Confirmed")
     @outgoing_relationship.update_all(status: "Confirmed")
     redirect_to user_relationships_path, notice: 'Friendship confirmed!'

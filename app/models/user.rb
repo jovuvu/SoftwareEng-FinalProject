@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
   	# serialize :friends
 
   	# each user has many posts, creates each users' personalized news feed
-  	has_many :posts
+
+  	has_many :posts, :source => :author
+  	
   	has_many :relationships, :foreign_key => "requesting_user_id"
   	
   	has_many  :confirmed_friends, 
@@ -35,6 +37,18 @@ class User < ActiveRecord::Base
               :through => :relationships, 
               :conditions => {"relationships.status" => "Requested"},
               :source => :friend
+              
+    has_many  :friends,
+              :source => :friend,
+              :through => :relationships do
+                def status(crit)
+                  where("relationships.status = ?", crit)
+                end
+              end
+              
+    has_many  :friend_posts, -> {where(relationships: {status: "Confirmed"})},
+              :through => :relationships, 
+              :source => :posts
               
   	def User.new_remember_token
   		SecureRandom.urlsafe_base64

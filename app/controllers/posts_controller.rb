@@ -1,19 +1,16 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:index, :edit, :update, :destroy]
 
   # GET /posts
   def index
-    @user = User.find(params[:user_id])
-    query = {}
-    query = ["parent is (?)", "wall/" + params[:user_id]]
-    @posts = Post.where(query)
+    if(@auth_admin)
+      @user = current_user
+      @posts = current_user.posts + current_user.friend_posts
+    else
+      insuff_permissions
+    end
   end
-
-  # GET /posts/1
-  def show
-    @post = @user.posts
-  end
-
+  
   # GET /posts/new
   def new
     @post = Post.new
@@ -21,7 +18,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find params[:id]
+    @post = Post.find(params[:id])
   end
 
   # POST /posts
@@ -58,9 +55,22 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      if(params[:action]!="index")
+        @post = Post.find(params[:id])
+      end
+      if(params[:user_id] == session[:user_id].to_s) 
+        @auth_admin = true
+      else
+        @auth_admin = false
+      end
+      
+      if(!current_user.nil? && current_user.confirmed_friends.find_by_id(params[:id]))
+        @auth_friend = true
+      else 
+        @auth_friend = false
+      end
     end
-
+    
     # Only allow a trusted parameter "white list" through.
     def post_params
       params.require(:post).permit(:content,:user_id,:parent,:children)
