@@ -41,3 +41,9 @@ Feature: Users can view profile information on any profile page
 		| Email	                  | Password	|	Other_Email					|	Other_First		|
 		| Bob.Ross@colorado.edu   | happytrees	|	billy.jean@colorado.edu		|	Bob				|
 		| billy.jean@colorado.edu | aintmyson	|	Bob.ross@colorado.edu		|	Billy			|
+		
+	Scenario: View a users profile when you are not logged in.
+		Given I am not logged in
+		And a user with the email "Poopfeast@gmail.com" and the first name "Poop" exists
+		And I am on his profile page
+		Then I should see "Only Poop's friends can view their profile"

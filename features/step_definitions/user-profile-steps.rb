@@ -8,6 +8,15 @@ Given(/^I am logged in as a user with email "(.+)" and password "(.+)"$/) do |em
   step "I should be redirected to my profile page"
 end
 
+Given(/^I am not logged in$/) do
+  visit root_path
+  step "I should see \"Sign In\""
+end
+
+Given(/^a user with the email "(.+)" and the first name "(.+)" exists$/) do |email, first|
+  @current_friend=FactoryGirl.create(:user, email: email,name_first: first)
+end
+
 Given(/^I am\s?(.*)? friends with a user with the email "(.+)"$/) do |optional, args|
   case args
   when  /^(.+)" and the first name "(.+)$/
