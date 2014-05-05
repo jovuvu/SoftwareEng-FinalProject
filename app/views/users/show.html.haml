@@ -1,8 +1,9 @@
 / User's Profile
 %div.page
-	- if (!(@authorized))
+	- if (!(@auth_friend||@auth_admin))
 		%h2.subtitle Only #{@user.name_first.capitalize}'s friends can view their profile
-		= link_to "Send friend request to #{@user.name_first.capitalize}", new_relationship_path("#{@user.id}")
+		%h2.subtitle
+			= link_to "Send friend request to #{@user.name_first.capitalize}", new_relationship_path("#{@user.id}")
 	- else
 		%title #{@user.name_first} #{@user.name_last}'s Profile
 		%p#notice= notice

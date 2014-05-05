@@ -2,11 +2,6 @@ class RelationshipsController < ApplicationController
   include SessionsHelper
   before_action :set_relationship, only: [:show, :edit, :update, :destroy]
 
-  # GET /relationships
-  def index
-    @relationships = Relationship.all
-  end
-
   def user_index
   end
 

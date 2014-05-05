@@ -8,7 +8,7 @@ SoftwareEngFinalProject::Application.routes.draw do
   delete '/signout' => 'sessions#destroy', as: 'signout'
   resources :relationships, only: [:show, :new, :create, :update]
   resources :sessions, only: [:new, :create]
-  resources :users, only:[:show,:edit,:update,:index]
+  resources :users, only:[:edit,:update,:index]
   resources :users, only:[:show] do
     resources :posts, only:[:edit,:update,:create,:destroy,:index,:new]
   end

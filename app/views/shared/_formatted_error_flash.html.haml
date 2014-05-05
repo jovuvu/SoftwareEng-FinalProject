@@ -6,6 +6,6 @@
       - if /\["([^\"]+)".*\]/.match(item[1].to_s)
         %li
           ="#{cap_each_word(item[0].to_s)}: #{cap_each_word($1)}"
-- rescue SyntaxError => se
+- rescue SyntaxError, NameError => se
   %div#error_explanation 
     =error

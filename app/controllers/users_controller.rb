@@ -11,30 +11,25 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     params[:user_id] = params[:id]
-    @authorized = false
     if(session[:user_id].nil? == false)
       id = params[:id] # retrieve user ID from URI route
       @current_user = User.find(session[:user_id.to_s])
       @user = User.find(id)
-      if(id == session[:user_id].to_s || @current_user.confirmed_friends.find_by_id(id))
-        @authorized = true
-      end
     end
     @posts = Post.where(:parent => "newsfeed/#{@user.id}")
   end
   # GET /users/new
+  
   def new
     @user = User.new
   end
 
   # GET /users/1/edit
   def edit
-    if (session[:user_id].to_s == params[:id])
-      @user = User.find params[:id]
-    else
-      @user = User.find params[:id]
-      flash[:notice] = "You cannot edit another users profile."
-      redirect_to @user
+    @user = User.find params[:id]
+    if (!@auth_admin)
+      flash[:error] = 'Unauthorized Access Request'
+      redirect_to root_path
     end
   end
 
@@ -62,11 +57,16 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
-      @user.update_attributes!(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+    if(@auth_admin)
+      if @user.update(user_params)
+        @user.update_attributes!(user_params)
+        redirect_to @user, notice: 'User was successfully updated.'
+      else
+        render action: 'edit'
+      end
     else
-      render action: 'edit'
+      flash[:error] = 'Unauthorized Access Request'
+      redirect_to root_path
     end
   end
 
@@ -79,6 +79,19 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
+      
+      if(params[:id] == session[:user_id].to_s) 
+        @auth_admin = true
+      else
+        @auth_admin = false
+      end
+      
+      if(!current_user.nil? && current_user.confirmed_friends.find_by_id(params[:id]))
+        @auth_friend = true
+      else 
+        @auth_friend = false
+      end
+      
       @user = User.find(params[:id])
     end
 

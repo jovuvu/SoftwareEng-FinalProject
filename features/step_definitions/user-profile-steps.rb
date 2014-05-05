@@ -14,11 +14,11 @@ Given(/^I am not logged in$/) do
 end
 
 Given(/^a user with the email "(.+)" and the first name "(.+)" exists$/) do |email, first|
-  @current_friend=FactoryGirl.create(:user, email: email,name_first: first)
+  @target=FactoryGirl.create(:user, email: email,name_first: first)
 end
 
 Given(/^I am on his profile page$/) do
-  visit path_to("profile page for user", {"user"=>@current_friend})
-  current_path.should == path_to("profile page for user", {"user"=>@current_friend})
+  visit path_to("profile page for user", {"user"=>@target})
+  current_path.should == path_to("profile page for user", {"user"=>@target})
 end
 
