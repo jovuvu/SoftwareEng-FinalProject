@@ -8,30 +8,27 @@ class RelationshipsController < ApplicationController
   end
 
   def user_index
-    # @outgoing_relationships = Relationship.where(:requesting_user_id => params[:user_id])
-    @outgoing_relationships = Relationship.where(:requesting_user_id => current_user.id, :confirmed => false)
-    # @incoming_relationships = Relationship.where(:receiving_user_id => params[:user_id])
-    @incoming_relationships = Relationship.where(:receiving_user_id => current_user.id, :confirmed => false)
-    @confirmed_relationships = Relationship.where(:requesting_user_id => current_user.id, :confirmed => true)
-    # relationship
-
   end
 
   # GET /relationships/1
   def show
-
-
   end
 
   # GET /relationships/new
   def new
-    @relationship = Relationship.new
-    @relationship.requesting_user_id = current_user.id
-    @relationship.receiving_user_id = params[:format]
-    @relationship.confirmed = current_user.id
+    params[:relationship] = {:requesting_user_id => current_user.id,
+                              :receiving_user_id => params[:format],
+                                :confirmed => false,
+                                  :status => "Pending"}
+    @relationship = Relationship.new(relationship_params)
+    @relationship.save
+    params[:relationship] = {:requesting_user_id => params[:format],
+                              :receiving_user_id => current_user.id,
+                                :confirmed => false,
+                                  :status => "Requested"}
+    @relationship = Relationship.new(relationship_params)
     @relationship.save
     redirect_to "/users/#{current_user.id}/relationships"
-
   end
 
   # GET /relationships/1/edit
@@ -51,16 +48,9 @@ class RelationshipsController < ApplicationController
 
   # PATCH/PUT /relationships/1
   def update
-
-    logger.debug "-------------------------------------------------"
-    logger.debug "RELATIONSHIP: #{@relationship.attributes.inspect}"
-    logger.debug "-------------------------------------------------"
-
-    
-      @relationship.update( :confirmed => true)
-      redirect_to current_user, notice: 'Friendship confirmed!'
-
-   
+    @incoming_relationship.update_all(status: "Confirmed")
+    @outgoing_relationship.update_all(status: "Confirmed")
+    redirect_to user_relationships_path, notice: 'Friendship confirmed!'
   end
 
   # DELETE /relationships/1
@@ -74,11 +64,12 @@ class RelationshipsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_relationship
-      @relationship = Relationship.find(params[:id])
+      @outgoing_relationship = Relationship.where(:requesting_user_id => current_user.id, :receiving_user_id => params[:id])
+      @incoming_relationship = Relationship.where(:requesting_user_id => params[:id], :receiving_user_id => current_user.id)
     end
 
     # Only allow a trusted parameter "white list" through.
     def relationship_params
-      params[:relationship]
+      params.require(:relationship).permit(:requesting_user_id,:receiving_user_id,:confirmed,:status)
     end
 end

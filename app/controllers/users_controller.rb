@@ -10,12 +10,13 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    params[:user_id] = params[:id]
     @authorized = false
     if(session[:user_id].nil? == false)
       id = params[:id] # retrieve user ID from URI route
       @current_user = User.find(session[:user_id.to_s])
       @user = User.find(id)
-      if(id == session[:user_id].to_s || @current_user.friends.find_by_id(id))
+      if(id == session[:user_id].to_s || @current_user.confirmed_friends.find_by_id(id))
         @authorized = true
       end
     end

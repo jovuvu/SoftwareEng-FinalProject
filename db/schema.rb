@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140428045100) do
     t.integer  "requesting_user_id"
     t.integer  "receiving_user_id"
     t.boolean  "confirmed"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

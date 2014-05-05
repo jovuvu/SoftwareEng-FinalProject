@@ -18,5 +18,6 @@ FactoryGirl.define do
 	
 	factory :relationship do
 	  confirmed true
+    status "Confirmed"
 	end
 end

@@ -12,11 +12,11 @@ end
 #  page.has_content?(content).should == true
 #end
 
-When(/^I Click on "(Sign In)"$/) do |button|
-  within ".content" do
-    click_on button
-  end
-end
+#When(/^I Click on "(Sign In)"$/) do |button|
+#  within ".content" do
+#    click_on button
+#  end
+#end
 
 Given /^I've logged in successfully as "(.+)" with password: "(.+)"/ do |email, password|
   many_steps %{
@@ -25,11 +25,11 @@ Given /^I've logged in successfully as "(.+)" with password: "(.+)"/ do |email, 
     Then I should see "Email"
     When I fill in "Email" with "#{email}"
     And I fill in "Password" with "#{password}"
-    And I Click on "Sign In"
+    And I Click on "Sign In" within ".content"
     Then I should be redirected to my profile page
   }
 end
 
-When(/^I Click on "(List My Friends)"$/) do |button|
-  click_on button
-end
+#When(/^I Click on "(List My Friends)"$/) do |button|
+#  click_on button
+#end

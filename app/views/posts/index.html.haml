@@ -1,7 +1,9 @@
 %div.page
-  %title #{@user.name_first} #{@user.name_last}'s Newsfeed
+  %title #{@user.name_first}'s Newsfeed
+  %h2.subtitle #{@user.name_first}'s Newsfeed
   %p#notice= notice
 
+  = link_to 'New Post', new_user_post_path
   %table#posts
     - @posts.each do |post|
       %tr
@@ -14,5 +16,4 @@
   
   %br
   
-  = link_to 'New Post', new_user_post_path
   

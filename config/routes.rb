@@ -1,24 +1,23 @@
 SoftwareEngFinalProject::Application.routes.draw do
 
-  resources :relationships
 
-  resources :users, except: :create do
-    resources :posts
-    # resources :relationships, only: [:index, :show]
+  root 'sessions#new'
+  get '/signup' => 'users#new', as: 'signup'
+  post '/signup' => 'users#create'
+  get '/signin' => 'sessions#new',  as: 'signin'
+  delete '/signout' => 'sessions#destroy', as: 'signout'
+  resources :relationships, only: [:show, :new, :create, :update]
+  resources :sessions, only: [:new, :create]
+  resources :users, only:[:show,:edit,:update,:index]
+  resources :users, only:[:show] do
+    resources :posts, only:[:edit,:update,:create,:destroy,:index,:new]
   end
-  resources :sessions, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'sessions#new'
-  match '/signup', to: 'users#new', via: 'get'
-  match '/signup', to: 'users#create', via: 'post'
-  match '/signin', to: 'sessions#new', via: 'get'
-  match '/signout', to: 'sessions#destroy', via: 'delete'
-
-  match 'users/:id/relationships(.:format)', to: 'relationships#user_index', via: 'get'
+  get 'users/:id/relationships(.:format)' => 'relationships#user_index', as: 'user_relationships'
   match 'users/:id/relationships(.:format)', to: 'relationships#update', via: 'patch'
 
   # get '/users/:user_id/friends' => 'relationships#index'

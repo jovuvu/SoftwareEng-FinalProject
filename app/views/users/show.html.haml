@@ -49,6 +49,7 @@
 					#{@user.music}
 		%div.wall
 			%h2.title #{@user.name_first}'s Wall
+			= link_to 'New Post', new_user_post_url(user_id: params[:id])
 			- @posts.each do |post|
 				%div.post
 					%span.author Posted by: #{post.author.name_first.capitalize} #{post.author.name_last.capitalize}

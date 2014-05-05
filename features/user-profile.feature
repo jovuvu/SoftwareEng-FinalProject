@@ -3,11 +3,15 @@ Feature: Users can view profile information on any profile page
 	As a user
 	So that I can learn a little bit about another user
 	I want to be able to see profile information on user profile pages
-	
-	Scenario Outline: View a users profile when you are their friend.
-		Given I am logged in as a user with email "<Email>" and password "<Password>"
-		And I am friends with a user with the email "<Friend_Email>"
-		And I am on his profile page
+	Background:
+		Given Our default user
+		And Our default friendship
+		And Our default nobody
+
+	Scenario: View a users profile when you are their friend.
+		Given I am logged in as "default_user"
+		And I am friends with "default_friend"
+		And I navigate to "his page"
 		Then I should see "'s Profile"
 		And I should see "Email:"
 		And I should see "Date of Birth:"
@@ -25,25 +29,21 @@ Feature: Users can view profile information on any profile page
 		And I should see their quotes
 		And I should see their tv_and_movies
 		And I should see their music
-
-		Examples:
-		| Email	                  | Password	|	Friend_Email	|
-		| Bob.Ross@colorado.edu   | happytrees	|	billy.jean@colorado.edu		|
-		| billy.jean@colorado.edu | aintmyson	|	Bob.ross@colorado.edu	|
 		
-	Scenario Outline: View a users profile when you are NOT their friend.
-		Given I've logged in successfully as "<Email>" with password: "<Password>"
-		And I am NOT friends with a user with the email "<Other_Email>" and the first name "<Other_First>"
-		And I am on his profile page
-		Then I should see "Only <Other_First>'s friends can view their profile"
-
-		Examples:
-		| Email	                  | Password	|	Other_Email					|	Other_First		|
-		| Bob.Ross@colorado.edu   | happytrees	|	billy.jean@colorado.edu		|	Bob				|
-		| billy.jean@colorado.edu | aintmyson	|	Bob.ross@colorado.edu		|	Billy			|
+	Scenario: View a users profile when you are NOT their friend.
+		Given I am logged in as "default_user"
+		And The following user exists:
+			|	email					|	name_first	|	password			|
+			|	papa.johns@pizza.com	|	papa		|	betterIngredients	|
+		And I am NOT friends with "him"
+		And I navigate to "his page"
+		Then I should see "Only Papa's friends can view their profile"
+		And I should see "Send friend request to Papa"
 		
 	Scenario: View a users profile when you are not logged in.
 		Given I am not logged in
 		And a user with the email "Poopfeast@gmail.com" and the first name "Poop" exists
 		And I am on his profile page
 		Then I should see "Only Poop's friends can view their profile"
+		And I should see "Send friend request to Poop"
+		

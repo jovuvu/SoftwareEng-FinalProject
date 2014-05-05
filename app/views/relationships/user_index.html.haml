@@ -1,32 +1,24 @@
 %div.narrowpage
   %h1.subtitle Listing User's Relationships
-  - if @incoming_relationships.count > 0
-    - @incoming_relationships.each do |relationship|
+  - if current_user.friend_requests.count > 0
+    - current_user.friend_requests.each do |friend|
       / pink
       %div.friendslist{ :style => "background: #faa"}
-        - @friend = User.find(relationship.requesting_user_id)
-        %span= link_to "#{@friend.name_first} #{@friend.name_last}", user_path(@friend)
-        %span= link_to "Accept", relationship_path(relationship), :method => :patch
+        %span= link_to "#{friend.name_first} #{friend.name_last}", user_path(friend)
+        %span= link_to "Accept", relationship_path("#{friend.id}"), :method => :patch
 
-  - if @outgoing_relationships.count > 0
-    - @outgoing_relationships.each do |relationship|
+  - if current_user.pending_friends.count > 0
+    - current_user.pending_friends.each do |friend|
       / green
       %div.friendslist{ :style => "background: #afa"}
-        - @friend = User.find(relationship.receiving_user_id)
-        %span= link_to "#{@friend.name_first} #{@friend.name_last}", user_path(@friend)
+        %span= link_to "#{friend.name_first} #{friend.name_last}", user_path(friend)
         %span Request Sent
 
-  - if @confirmed_relationships.count > 0
-    - @confirmed_relationships.each do |relationship|
+  - if current_user.confirmed_friends.count > 0
+    - current_user.confirmed_friends.each do |friend|
       / blue
       %div.friendslist{ :style => "background: #aaf"}
-
-        - if relationship.receiving_user_id == current_user.id
-          - @friend = User.find(relationship.requesting_user_id)
-        - else
-          - @friend = User.find(relationship.receiving_user_id)
-
-        %span= link_to "#{@friend.name_first} #{@friend.name_last}", user_path(@friend)
+        %span= link_to "#{friend.name_first} #{friend.name_last}", user_path(friend)
         %span Confirmed  
 
   %br

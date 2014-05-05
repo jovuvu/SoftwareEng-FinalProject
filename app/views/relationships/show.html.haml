@@ -1,10 +1,10 @@
 %p#notice= notice
 
 %tr{ :style => "background: #afa"}
-	- @friend = User.find(@relationship.receiving_user_id)
-	%td= @relationship.requesting_user_id
-	%td= @relationship.receiving_user_id
-	%td= @relationship.confirmed
+	- @friend = current_user.confirmed_friends.find(@incoming_relationship.requesting_user_id)
+	%td= @incoming_relationship.requesting_user_id
+	%td= @incoming_relationship.receiving_user_id
+	%td= @incoming_relationship.status
 	%td= link_to "#{@friend.name_first} #{@friend.name_last}", user_path(@friend)
 	%td Request Sent
 

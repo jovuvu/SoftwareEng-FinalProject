@@ -4,7 +4,7 @@ class CreateRelationships < ActiveRecord::Migration
     	t.integer :requesting_user_id
     	t.integer :receiving_user_id
     	t.boolean :confirmed
-
+    	t.string :status
     	t.timestamps
     end
   end

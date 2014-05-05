@@ -21,11 +21,21 @@ class User < ActiveRecord::Base
 
   	# each user has many posts, creates each users' personalized news feed
   	has_many :posts
-  	has_many :relationships, -> {where confirmed: true}, :foreign_key => "requesting_user_id"
-  	has_many  :friends, 
+  	has_many :relationships, :foreign_key => "requesting_user_id"
+  	
+  	has_many  :confirmed_friends, 
   	          :through => :relationships, 
+  	          :conditions => {"relationships.status" => "Confirmed"},
   	          :source => :friend
-
+    has_many  :pending_friends, 
+              :through => :relationships, 
+              :conditions => {"relationships.status" => "Pending"},
+              :source => :friend
+    has_many  :friend_requests, 
+              :through => :relationships, 
+              :conditions => {"relationships.status" => "Requested"},
+              :source => :friend
+              
   	def User.new_remember_token
   		SecureRandom.urlsafe_base64
   	end

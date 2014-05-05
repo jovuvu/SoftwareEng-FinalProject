@@ -6,7 +6,7 @@ Feature: Create a new account and be redirected to newsfeed
 	I want to be able to create a new account
 	
 	Background:
-		Given the following users exist:
+		Given The following user exists:
 		|	email					|	name_first	|	name_last	|
 		|	charliemurphy@gmail.com	|	charlie		|	murphy		|
 	
@@ -22,7 +22,8 @@ Feature: Create a new account and be redirected to newsfeed
 		Given My email: "<email>" is not taken
 		And My password: "<password>" does match my password_confirmation: "<password_confirmation>"
 		And I Click on "Submit"
-		Then I should be redirected to my profile page
+		Then The current user should be "<email>"
+		And I should be redirected to my profile page
 		
 		Examples:
 		| email	                |		name_first		|		name_last		|		password		|		password_confirmation		|
